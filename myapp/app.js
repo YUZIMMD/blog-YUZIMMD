@@ -6,6 +6,7 @@ var logger = require('morgan');
 //引入路由
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var userInfo = require('./routes/userInfo');
 //初始化express
 var app = express();
 
@@ -47,6 +48,17 @@ app.get('/user/:id',function(req,res,next){
   res.send('users');
 });
 
+//连接数据库mysql
+var mysql = require('mysql'),
+    myConnection = require('express-myconnection'),
+    dbOptions = {
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        port: 3306,
+        database: 'test'
+    };
+
 // 模板引擎设置
 app.set('views', path.join(__dirname, 'views'));//设置视图存放的目录
 app.set('view engine', 'pug');//设置模板引擎为pug，可以用的引擎非常多
@@ -59,6 +71,7 @@ app.use(express.static(path.join(__dirname, 'public')));//静态资源存放目�
 //定义使用哪些路由文件
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/userInfo', userInfo);
 
 // 捕获404并转发到错误处理程序
 app.use(function(req, res, next) {
