@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 //初始化express
 var app = express();
+
+
+
 //字符串匹配，总体字符表示方式可以借鉴正则的规则
 app.get('/ab?cd',function(req,res){
   res.send('匹配acd和abcd');
@@ -16,6 +19,18 @@ app.get('/ab?cd',function(req,res){
 app.get('/ab+cd',function(req,res){
   res.send("匹配abcd,abbcd,abbbcd");
 });
+//匹配任何路径中含有a的路径
+app.get(/a/,function(req,res){
+  res.send('匹配任何路径中含有a的路径');
+});
+//匹配butterfly, draggonfly, fly结尾的
+app.get(/.*fly$/,function(req,res){
+  res.send('匹配fly结尾');
+});
+
+
+
+
 // 模板引擎设置
 app.set('views', path.join(__dirname, 'views'));//设置视图存放的目录
 app.set('view engine', 'pug');//设置模板引擎为pug，可以用的引擎非常多
