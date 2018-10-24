@@ -28,8 +28,24 @@ app.get(/.*fly$/,function(req,res){
   res.send('匹配fly结尾');
 });
 
+//中间介
 
+//没有挂载路径的中间件，每个请求都会执行该中间件
+// app.use(function(req,res,next){
+//   console.log('Time',Date.now());
+// });
 
+// //挂载了路径的中间件，任何指向该路径的请求都会执行它
+
+// app.use('/user/:id',function(){
+//   console.log('Request Type:',req.method);
+//   next();    
+// });
+//路由和句柄函数，处理指向该路径的GET请求
+
+app.get('/user/:id',function(req,res,next){
+  res.send('users');
+});
 
 // 模板引擎设置
 app.set('views', path.join(__dirname, 'views'));//设置视图存放的目录
@@ -39,7 +55,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));//静态资源存放目录
+app.use(express.static(path.join(__dirname, 'public')));//静态资源存放目录，托管静态文件
 //定义使用哪些路由文件
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
