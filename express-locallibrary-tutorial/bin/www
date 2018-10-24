@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('myapp:server');
+var app = require('../app');//导入真正应用程序入口点
+var debug = require('debug')('express-locallibrary-tutorial:server');
 var http = require('http');
 
 /**
