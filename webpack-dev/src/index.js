@@ -7,6 +7,19 @@ import Axios from 'axios'
 
 //修改原型链，全局使用axios,这样之后可在每个组件的methods中调用$axios命令完成数据请求
 Vue.prototype.$axios=Axios 
+
+
+//定义请求连接器
+//定义一个请求拦截器
+Axios.interceptors.request.use(function(config){
+  console.log('请求之前') //在请求发出之前进行一些操作
+  return config
+})
+//定义一个响应拦截器
+Axios.interceptors.response.use(function(config){
+  console.log('响应的时候')//在这里对返回的数据进行处理
+  return config
+})
 // var app = new Vue({
 //   el:'#app',
 //   data:{
