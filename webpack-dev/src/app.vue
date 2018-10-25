@@ -29,7 +29,7 @@
         },
       //调用本地接口
       getData2(){
-         this.$axios.get('/add')
+         this.$axios.get('/searchRouter')
             .then(res=>{
                 console.log(res)//返回请求的结果
             })
