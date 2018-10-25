@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
   // 指定打包入口
   entry: ['babel-polyfill','./src/index.js'],
@@ -28,7 +29,8 @@ module.exports = {
           chunkFilename:'[name].[hash:8].css'
       }),
       new CleanWebpackPlugin(['dist']),
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new VueLoaderPlugin()
   ],
   module:{
     rules: [
@@ -80,7 +82,37 @@ module.exports = {
             use: {
               loader: 'babel-loader'
             }
+        },
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader',
+          options:{
+            loaders:{
+              css:[
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: [require('autoprefixer')]
+                  }
+                }
+              ],
+              less:[
+                // MiniCssExtractPlugin.loader,
+                'style-loader',
+                'css-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: [require('autoprefixer')] // 添加css中的浏览器前缀
+                  }
+                },
+                'less-loader'
+              ]
+            }
           }
+        } 
       ]
   },
   //提取公共部分代码
