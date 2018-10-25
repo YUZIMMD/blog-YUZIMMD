@@ -170,7 +170,16 @@ module.exports = {
     port: 1234,
     open: true, // 自动打开浏览器
     compress: true ,// 服务器压缩
-    hot: true
+    hot: true,
+    //配置代理
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        pathRewrite: {'^/api' : ''},//真正请求后台接口时自动去掉api前缀
+        changeOrigin: true,     // target是域名的话，需要这个参数，
+        secure: false,          // 设置支持https协议的代理
+      }
+    }
     //... proxy、hot
   }
 }

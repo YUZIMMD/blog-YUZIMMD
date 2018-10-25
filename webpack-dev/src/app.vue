@@ -16,6 +16,7 @@
       }
     },
     methods:{
+      //调用外部接口
         getData(){
           // 调用一个外部的接口
             this.$axios.get('https://www.apiopen.top/journalismApi')
@@ -25,10 +26,21 @@
             .catch(err=>{
                 console.log(err)
             })
-        }
+        },
+      //调用本地接口
+      getData2(){
+         this.$axios.get('/add')
+            .then(res=>{
+                console.log(res)//返回请求的结果
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+      }  
     },
     mounted() {
      this.getData(); 
+     this.getData2();
     }
   }
 </script>

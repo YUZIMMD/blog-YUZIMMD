@@ -7,9 +7,8 @@ import Axios from 'axios'
 
 //修改原型链，全局使用axios,这样之后可在每个组件的methods中调用$axios命令完成数据请求
 Vue.prototype.$axios=Axios 
-
-
-//定义请求连接器
+//添加默认请求接口前缀
+Axios.defaults.baseURL = 'api'
 //定义一个请求拦截器
 Axios.interceptors.request.use(function(config){
   console.log('请求之前') //在请求发出之前进行一些操作
