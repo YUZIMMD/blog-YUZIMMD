@@ -36,11 +36,21 @@
             .catch(err=>{
                 console.log(err)
             })
-      }  
+      },
+      getData3(){
+         this.$axios.get('/users')
+            .then(res=>{
+                console.log(res)//返回请求的结果
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+      } 
     },
     mounted() {
      this.getData(); 
      this.getData2();
+     this.getData3();
     }
   }
 </script>
