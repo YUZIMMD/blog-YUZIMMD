@@ -1,3 +1,2 @@
-# Temporary-code-record
-Temporary code record
-webpack4.0+express+mysql
+# 更新版本-更新服务端和web端框架端版本到目前最新版本（2019-8-23）
+重新整理前端框架和请求配置代码
