@@ -1,6 +1,26 @@
 <!-- App.vue 示例代码： -->
 <template>
   <div>
+    <table>
+      <thead>
+        <tr>
+          <th>student_id</th>
+          <th>name</th>
+          <th>subject</th>
+          <th>grade</th>
+          <th>sex</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,index) in list" :key="index">
+          <td>{{item.student_id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.subject}}</td>
+          <td>{{item.grade}}</td>
+          <td>{{item.sex}}</td>
+        </tr>
+      </tbody>
+    </table>
     <div>
       <span>student_id</span>
       <input type="text" v-model="param.studentid"/>
@@ -21,7 +41,9 @@
       <span>sex</span>
       <input type="text" v-model="param.sex"/>
     </div>
-    <button @click="getData3()">保存</button>
+    <button @click="getData2()">新增</button>
+    <button @click="getData3()">修改</button>
+    <button @click="getData4()">删除</button>
   </div>
 </template>
 
@@ -46,7 +68,8 @@
       getData(){
         this.$axios.get('/students/queryStudentAction')
           .then(res=>{
-              console.log(res)//返回请求的结果
+            this.list = res.data.studentlist;
+            console.log(res)//返回请求的结果
           })
           .catch(err=>{
               console.log(err)
@@ -67,6 +90,18 @@
         this.$axios.post('/students/updateStudentAction',this.param)
           .then(res=>{
               console.log(res)//返回请求的结果
+              this.getData();
+          })
+          .catch(err=>{
+              console.log(err)
+          })
+      },
+      // 改
+      getData4(){
+        this.$axios.get('/students/deleteStudentAction',{params:{studentid:this.param.studentid}})
+          .then(res=>{
+              console.log(res)//返回请求的结果
+              this.getData();
           })
           .catch(err=>{
               console.log(err)
