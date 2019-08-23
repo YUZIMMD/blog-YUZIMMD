@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+</head>
+<body>
+    <h1>学生信息展示</h1>
+    <%if(result.code=='200'){%>
+        <%for (var i=0;i<result.studentlist.length;i++){%>
+        <p><%= '学号：'+result.studentlist[i].student_id%></p>
+        <p><%= '姓名：'+result.studentlist[i].name%></p>
+        <p><%= '专业：'+result.studentlist[i].subject%></p>
+        <p><%= '年级：'+result.studentlist[i].grade%></p>
+        
+            <% if(result.studentlist[i].sex=='1'){%>
+                <p>性别：男</p>
+            <%}else{%>
+                <p>性别：女</p> 
+               
+                <%}%>
+           
+        <%}%>
+        <%}else{%>
+          <h1>无数据</h1>
+          <%}%>
+  
+  
+    
+ 
+ </body>
+ 
+ </html>

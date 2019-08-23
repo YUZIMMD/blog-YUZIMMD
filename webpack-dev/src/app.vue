@@ -21,7 +21,7 @@
       <span>sex</span>
       <input type="text" v-model="param.sex"/>
     </div>
-    <button @click="getData2()">保存</button>
+    <button @click="getData3()">保存</button>
   </div>
 </template>
 
@@ -31,6 +31,7 @@
     name: 'HelloWorld',
     data () {
       return {
+        list:[],
         param:{
           studentid:'',
           name:'',
@@ -41,30 +42,39 @@
       }
     },
     methods:{
-      //调用外部接口
-        getData(){
-          // 调用一个外部的接口
-            this.$axios.get('https://www.apiopen.top/journalismApi')
-            .then(res=>{
-                console.log(res)//返回请求的结果
-            })
-            .catch(err=>{
-                console.log(err)
-            })
-        },
-      //调用本地接口
+      // 查
+      getData(){
+        this.$axios.get('/students/queryStudentAction')
+          .then(res=>{
+              console.log(res)//返回请求的结果
+          })
+          .catch(err=>{
+              console.log(err)
+          })
+      },
+      // 增
       getData2(){
-         this.$axios.get('/students/addStudentAction',{params:this.param})
-            .then(res=>{
-                console.log(res)//返回请求的结果
-            })
-            .catch(err=>{
-                console.log(err)
-            })
+        this.$axios.get('/students/addStudentAction',{params:this.param})
+          .then(res=>{
+              console.log(res)//返回请求的结果
+          })
+          .catch(err=>{
+              console.log(err)
+          })
+      },
+      // 改
+      getData3(){
+        this.$axios.post('/students/updateStudentAction',this.param)
+          .then(res=>{
+              console.log(res)//返回请求的结果
+          })
+          .catch(err=>{
+              console.log(err)
+          })
       },
     },
     mounted() {
-    //  this.getData(); 
+     this.getData(); 
     }
   }
 </script>

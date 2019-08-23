@@ -69,9 +69,8 @@ function queryAllStudent(req,res,callback){
 }
  
 function updateStudent(req,res,callback){
-   
     let find = true;
-    var param = req.query||req.params;
+    var param = req.body;
     var result={};
     db.queryArgs(studentSql.selectOne,param.studentid,function(err,rows){
         if(rows!=null){
@@ -82,7 +81,6 @@ function updateStudent(req,res,callback){
             (typeof(param.grade)=='undefined')?student.grade=row.grade:student.grade=param.grade;
             (typeof(param.sex)=='undefined')?student.sex=row.sex:student.sex=param.sex;
             student.studentid=param.studentid;       
-        console.log(student);
         db.queryArgs(studentSql.updateOne,[student.name,student.subject,student.grade,student.sex,student.studentid],function(err,rows){
             if(!err){
                 result={
