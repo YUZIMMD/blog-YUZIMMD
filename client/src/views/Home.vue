@@ -16,7 +16,7 @@
             <div class="hr"></div>
             <div class="size-1">一个时刻保持初学者心态，专注而简单的人</div>
             <!-- <div class="size-1">关于茶叶分类，茶叶分为绿茶，红茶，乌龙茶</div> -->
-            <el-button class="btn-style-user-details" round>个人主页</el-button>
+            <el-button class="btn-style-user-details" round @click="linkTo()">个人主页</el-button>
           </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
       <div class="item4-1">
         <div :class="scrollActive >2600?'fadeInLeft':''" v-if="scrollActive>2600">
           <div class="title">技术栈{{scrollActive}}</div>
-          <div class="details"><a class="link" target="_blank" href="https://www.runoob.com/wp-content/uploads/2016/11/Web-Front-End-Stack.zh-cn.png">前端技术图谱</a></div>
+          <div class="details"><a class="link" target="_blank" href="https://www.runoob.com/w3cnote/webfrontendstack.html">前端技术图谱</a></div>
         </div>
       </div>
       <div class="item4-2">
@@ -65,16 +65,16 @@
         </el-row>
         <el-row :gutter="4">
            <el-col :span="6" :class="scrollActive >2300?'fadeInLeft':''" v-if="scrollActive>2300">
-            <div class="grid-content">流程控制<div class="modal-content">111</div></div>
+            <div class="grid-content">流程控制<div class="modal-content"><div>ES6,ES7,async,Promise</div></div></div>
           </el-col>
           <el-col :span="6" :class="scrollActive >2300?'fadeInUpLeft':''" v-if="scrollActive>2300">
-            <div class="grid-content">安全<div class="modal-content">111</div></div>
+            <div class="grid-content">安全<div class="modal-content"><div>Sandbox,XSS,CORS</div></div></div>
           </el-col>
            <el-col :span="6">
             <div class="opacity">1</div>
           </el-col>
           <el-col :span="6" :class="scrollActive >2300?'fadeInRight':''" v-if="scrollActive>2300">
-            <div class="grid-content">基础工具<div class="modal-content">111</div></div>
+            <div class="grid-content">基础工具<div class="modal-content">Node.js,Phantom.js,SpiderMonkey</div></div>
           </el-col>
         </el-row>
         <el-row :gutter="4" class="rowStyle">
@@ -114,6 +114,9 @@ export default {
       let scrollTop = document.getElementById('home').scrollTop;
       this.scrollActive = scrollTop;
       console.log(scrollTop)
+    },
+    linkTo(){
+      this.$router.push('/index')
     }
   },
   mounted(){
