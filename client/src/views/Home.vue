@@ -10,7 +10,6 @@
         </div>
       </div>
       <div class="user-details">
-        {{scrollActive}}
           <div :class="scrollActive>=0?'fadeInRight':''" v-if="scrollActive >=0">
             <div>stay hungry  stay foolish</div>
             <div class="hr"></div>
@@ -23,7 +22,7 @@
     <div class="item2">
       <div class="item2-1">
         <div :class="scrollActive >600?'fadeInLeft':''" v-if="scrollActive>600">
-          <div class="title">一些想法{{scrollActive}}</div>
+          <div class="title">一些想法</div>
           <div class="details">凡是你认真去学习，认真去做过的事情，都不会是徒劳的，时间会证明你学到的都会有用到的那天。遇到难的东西，只要学到新的东西就是进步，不过分思考结果，感受过程-来自心灵鸡汤欺骗法则</div>
         </div>
       </div>
@@ -33,7 +32,7 @@
       <div class="item3-1"></div>
       <div class="item3-2">
         <div :class="scrollActive >1600?'fadeInRight':''" v-if="scrollActive>1600">
-          <div class="title">一个标题{{scrollActive}}</div>
+          <div class="title">一个标题</div>
           <div class="details">一个不知道放什么的模块，但是作为一个前端程序员，我有自己独特的审美（别问为什么，这里就是要放一块，和第二块对应🐶）</div>
         </div>
       </div>
@@ -41,7 +40,7 @@
     <div class="item4">
       <div class="item4-1">
         <div :class="scrollActive >2600?'fadeInLeft':''" v-if="scrollActive>2600">
-          <div class="title">技术栈{{scrollActive}}</div>
+          <div class="title">技术栈</div>
           <div class="details"><a class="link" target="_blank" href="https://www.runoob.com/w3cnote/webfrontendstack.html">前端技术图谱</a></div>
         </div>
       </div>
@@ -175,9 +174,10 @@ export default {
               width: 80%;
             }
             .btn-style-user-details{
-              margin-top: 2.5rem;
+              margin-top: 4.5rem;
               background-color: #d24c63;
               color: #ffffff;
+              border: none;
             }
           }
       }
