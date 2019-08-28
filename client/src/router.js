@@ -16,6 +16,19 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: () => import('./views/index.vue')
+    },
+    {
+      path: '/basic',
+      name: 'basic',//模版文件
+      component: () => import('./views/BackBasic.vue'),
+      children:[
+        {
+          path: 'systemBasic',
+          name: 'systemBasic',
+          meta:'系统基本情况 / 系统基本情况',
+          component: () => import('./views/BackIndex/BackIndex.vue')
+        }
+      ]
     }
   ]
 })

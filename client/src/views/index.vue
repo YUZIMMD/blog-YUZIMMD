@@ -1,6 +1,7 @@
 <template>
   <div class="index">
     <div class="content">
+        <Header></Header>
         <div class="item1">
             <div class="left">
                 <div class="logo">koorty</div>
@@ -87,8 +88,9 @@
 </template>
 
 <script>
+import Header from '../components/header'
 export default {
-
+    components:{Header}
 }
 </script>
 
@@ -167,6 +169,7 @@ export default {
                     background: #796363;
                     width: 100%;
                     height: 74%;
+                    cursor: pointer;
                 }
                 .title{
                     font-size: 1.4rem;
