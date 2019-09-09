@@ -12,7 +12,7 @@
         active-text-color="#ffd04b"
         :collapse="isCollapse"
         >
-            <el-menu-item :index="'/basic/specialAudit'">
+            <el-menu-item :index="'/basic/BackIndex'">
                 <i class="iconfont iconzhuanxiangshenji2"></i>
                 <span slot="title">博客基本情况</span>
             </el-menu-item>
@@ -21,31 +21,27 @@
                     <i class="iconfont iconxiangmujianshejinzhan3"></i>
                     <span>前 端</span>
                 </template>
-                <el-menu-item :index="'/basic/systemConstruction'">HTML</el-menu-item>
-                <el-menu-item :index="'/basic/networkIntegration'">CSS</el-menu-item>
-                <el-menu-item :index="'/basic/networkIntegration'">JAVASCRIPT</el-menu-item>
-                <el-menu-item :index="'/basic/networkIntegration'">框架</el-menu-item>
-                <el-menu-item :index="'/basic/networkIntegration'">打包构建工具</el-menu-item>
-                <el-menu-item :index="'/basic/networkIntegration'">其他</el-menu-item>
+                <el-menu-item :index="'/basic/font'">HTML</el-menu-item>
+                <el-menu-item :index="'/basic/font'">CSS</el-menu-item>
+                <el-menu-item :index="'/basic/font'">JAVASCRIPT</el-menu-item>
+                <el-menu-item :index="'/basic/font'">框架</el-menu-item>
+                <el-menu-item :index="'/basic/font'">打包构建工具</el-menu-item>
+                <el-menu-item :index="'/basic/font'">其他</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
                     <i class="iconfont iconxiangmujianshejinzhan3"></i>
                     <span>后 端</span>
                 </template>
-                <el-menu-item :index="'/basic/systemConstruction'">NODEJS</el-menu-item>
+                <el-menu-item :index="'/basic/backEnd'">NODEJS</el-menu-item>
             </el-submenu>
-            <el-menu-item :index="'/basic/specialAudit'">
-                <i class="iconfont iconzhuanxiangshenji2"></i>
-                <span slot="title">博客基本情况</span>
-            </el-menu-item>
             <el-submenu index="4">
                 <template slot="title">
                     <i class="iconfont icongongzuojianbao2"></i>
-                    <span>工作简报</span>
+                    <span>学习简报</span>
                 </template>
                 <el-menu-item :index="'/basic/progressReport'">进度报表</el-menu-item>
-                <el-menu-item :index="'/basic/workplan'">工作计划</el-menu-item>
+                <el-menu-item :index="'/basic/studyPlan'">学习计划</el-menu-item>
             </el-submenu>
             <!-- <template v-for="item in treeMenus">
                 <el-menu-item :key="item.id" v-if="item.children.length===0" :index="item.sysMenu.url">
@@ -79,7 +75,7 @@ export default {
     data(){
         return{
             isCollapse:false,//页面所有的数据写在这里
-            active:'/basic/systemBasic'
+            active:'/basic/BackIndex'
         }
     },
     computed: mapState({

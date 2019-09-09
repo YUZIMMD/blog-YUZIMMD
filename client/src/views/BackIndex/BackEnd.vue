@@ -1,13 +1,13 @@
 <template>
-  <div class="basic-index">
-      <!-- echarts -->
+  <div class="basic-end">
+      
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'BasicIndex',
+  name: 'BasicEnd',
   data(){
       return{
        

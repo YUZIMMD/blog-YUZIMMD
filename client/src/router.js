@@ -15,7 +15,7 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
-      component: () => import('./views/index.vue')
+      component: () => import('./views/Index.vue')
     },
     {
       path: '/basic',
@@ -23,10 +23,34 @@ export default new Router({
       component: () => import('./views/BackBasic.vue'),
       children:[
         {
-          path: 'systemBasic',
-          name: 'systemBasic',
+          path: 'BackIndex',
+          name: 'BackIndex',
           meta:'系统基本情况 / 系统基本情况',
           component: () => import('./views/BackIndex/BackIndex.vue')
+        },
+        {
+          path: 'font',
+          name: 'font',
+          meta:'前端',
+          component: () => import('./views/BackIndex/Font.vue')
+        },
+        {
+          path: 'backEnd',
+          name: 'backEnd',
+          meta:'后端',
+          component: () => import('./views/BackIndex/BackEnd.vue')
+        },
+        {
+          path: 'progressReport',
+          name: 'progressReport',
+          meta:'学习简报 / 进度报表',
+          component: () => import('./views/BackIndex/ProgressReport.vue')
+        },
+        {
+          path: 'studyPlan',
+          name: 'studyPlan',
+          meta:'学习简报 / 学习计划',
+          component: () => import('./views/BackIndex/StudyPlan.vue')
         }
       ]
     }
