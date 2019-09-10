@@ -18,6 +18,11 @@ export default new Router({
       component: () => import('./views/Index.vue')
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/Login.vue')
+    },
+    {
       path: '/basic',
       name: 'basic',//模版文件
       component: () => import('./views/BackBasic.vue'),

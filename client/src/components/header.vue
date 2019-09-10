@@ -20,7 +20,7 @@ export default {
     name:'systemBasic',
     methods:{
         jump(){
-            this.$router.push('/basic/systemBasic');//$route和$router的区别,$router.push({path:'home'});本质是向history栈中添加一个路由，在我们看来是 切换路由，但本质是在添加一个history记录,route是一个跳转的路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的name,path,params,query等
+            this.$router.push('/basic/BackIndex');//$route和$router的区别,$router.push({path:'home'});本质是向history栈中添加一个路由，在我们看来是 切换路由，但本质是在添加一个history记录,route是一个跳转的路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的name,path,params,query等
         }
     }
 }
