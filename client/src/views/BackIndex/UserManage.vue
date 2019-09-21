@@ -62,7 +62,7 @@ export default {
   methods:{
     submitFun(){
       this.$http('get','/user/addUserAction',this.form).then(data=>{
-
+        console.log(data);
       });
     },
     init(){
