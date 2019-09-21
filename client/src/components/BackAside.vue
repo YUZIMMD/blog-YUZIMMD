@@ -43,6 +43,10 @@
                 <el-menu-item :index="'/basic/progressReport'">进度报表</el-menu-item>
                 <el-menu-item :index="'/basic/studyPlan'">学习计划</el-menu-item>
             </el-submenu>
+            <el-menu-item :index="'/basic/userManage'">
+                <i class="iconfont iconzhuanxiangshenji2"></i>
+                <span slot="title">博客后台用户管理</span>
+            </el-menu-item>
             <!-- <template v-for="item in treeMenus">
                 <el-menu-item :key="item.id" v-if="item.children.length===0" :index="item.sysMenu.url">
                     <i :class="item.sysMenu.icon"></i>

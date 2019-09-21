@@ -3,9 +3,9 @@
     <div class="login-box">
       <div class="title">欢迎登录</div>
       <input type="text" v-model="ruleForm.name" auto-complete="off"/>
-      <input type="password" v-model="ruleForm.pass" auto-complete="off"/>
+      <input type="password" v-model="ruleForm.passWord" auto-complete="off"/>
       <div class="hr"></div>
-      <el-button class="btn-style">登 录</el-button>
+      <el-button class="btn-style" @click="login">登 录</el-button>
       <div class="notice">没有账户?注册？想都不要想，不可能的</div>
       <div class="bg-fill2"></div>
       <div class="bg-fill"></div>
@@ -21,11 +21,26 @@ export default {
       return{
         ruleForm:{
           name:'',
-          pass:''
+          passWord:''
         }
       }
   },
   methods:{
+    login(){
+      this.$http('get','/login',this.ruleForm).then(data=>{
+        if(data.code == 200){
+          this.$message({
+            message: '登录成功',
+            type: 'success'
+          });
+          // 将登录信息存入缓存中
+          this.$store.commit('setUserInfo',{name:this.ruleForm.name});
+          this.$router.push('/basic/BackIndex');
+        }
+      })
+    }
+  },
+  mounted(){
   }
 }
 </script>

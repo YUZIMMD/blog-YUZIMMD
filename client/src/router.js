@@ -56,6 +56,12 @@ export default new Router({
           name: 'studyPlan',
           meta:'学习简报 / 学习计划',
           component: () => import('./views/BackIndex/StudyPlan.vue')
+        },
+        {
+          path: 'userManage',
+          name: 'userManage',
+          meta:'博客后台登录用户管理',
+          component: () => import('./views/BackIndex/UserManage.vue')
         }
       ]
     }

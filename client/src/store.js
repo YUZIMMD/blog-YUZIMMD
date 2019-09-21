@@ -7,43 +7,17 @@ export default new Vuex.Store({
   state: {
     // token:'',
     userInfo:{
-      regionCode: "",
-      regionName: "",
-      roleId: [],
-      userName: "",
-    },
-    loginInfo:{
-      user:{
-        deptId:''
-      }
-    },
-    systemShowName:{}
-  },
-  getters: {
-    user(state){
-      return state.userInfo
-    },
-    token(state){
-      return state.token
+      name:''
     }
-
   },
   mutations: {
     setUserInfo(state,data){
-      state.userInfo=data.user;
-      sessionStorage.setItem("user", JSON.stringify(data.user));
-      sessionStorage.setItem("accessToken", data.tokenMap.accessToken);
-    },
-    setloginInfo(state,data){
-      state.loginInfo = data;
-    },
-    setSystemShowName(state,data){
-      state.systemShowName = data;
+      state.userInfo=data;
+      localStorage.setItem('name',data.name);
     },
     LOGOUT (state){
-      sessionStorage.clear();
       state.userInfo = {};
-      // state.token = null
+      localStorage.clear('name');
     }
   },
   actions:{

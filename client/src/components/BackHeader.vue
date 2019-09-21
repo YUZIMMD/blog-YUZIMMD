@@ -6,7 +6,7 @@
         <div class="textRight">
             <div class="user">
                 <!-- <img style="width:25px;" src="../assets/images/login/admin.png"> -->
-                <span style="margin-right:5px">{{user?user.userName:''}}dengyt</span>
+                <span style="margin-right:5px">{{name?name:userName}}</span>
                 <i class="el-icon-arrow-down"></i>
                 <ul class="sysMenu">
                     <li @click="logout" style="text-align:center;width:104px">
@@ -24,14 +24,13 @@ export default {
     name:'headerAssembly',
     data(){
         return{
-            test:1//页面所有的数据写在这里
+            test:1,//页面所有的数据写在这里
+            userName:''
         }
     },
     computed: mapState({
         // 箭头函数可使代码更简练
-        sysProductIntegrate: state => state.loginInfo.sysProductIntegrate,
-        user: state => state.loginInfo.user,
-        systemShowName:state => state.systemShowName.systemShowName
+        name: state => state.userInfo.name,
     }),
     methods:{
         //页面所有的方法写在这里
@@ -39,7 +38,6 @@ export default {
 
         },
         logout(){
-            this.$http('post','/logout')
             this.$store.commit('LOGOUT')
             this.$router.push('/login')
         },
@@ -51,6 +49,7 @@ export default {
     },
     mounted(){
         this.getData();//一定要在这里调用
+        this.userName = localStorage.getItem('name');
     }
 }
 </script>

@@ -10,7 +10,7 @@
             <div class="main">
               <div class="breadcrumbStyle">
                 <!-- 项目基本情况 / 信息系统基本情况 -->
-                {{$route.meta||'项目基本情况 / 信息系统基本情况'}}
+                {{$route.meta||'项目基本情况 / 博客基本情况'}}
                 
               </div>
               <div class="mainBox">
@@ -38,21 +38,10 @@ export default {
 
   },
   created(){
-     // 从其他系统跳转过来
-    let token = this.$route.query.token;
-    if(token){
-      sessionStorage.setItem("accessToken", token);
-      this.$router.push('/')
-    }
+    
   },
   mounted(){
-     this.$http("get", "/user/loginInfo").then(data => {
-        this.$store.commit('setloginInfo',data.data.object);
-      });
-      this.$http("get", "/sys/getSystemShowName").then(data => {
-       this.systemShowName = data.data.object.systemShowName
-        this.$store.commit('setSystemShowName',data.data.object);
-      });
+     
   }
 }
 </script>

@@ -1,13 +1,12 @@
-var studentSql=require('../modules/sqlCommand').student_sql;
+var userSql=require('../modules/sqlCommand').user_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');
 var db = require('../modules/basicConnection');
  
  
-function addStudentAction(req,res,next){
+function addUserAction(req,res,next){
     var param = req.query || req.params;
-    //student_id,name,subject,grade,sex
-    db.queryArgs(studentSql.insertOne,[param.studentid,param.name,param.subject,param.grade,param.sex],function(err,result) {
+    db.queryArgs(userSql.insertOne,[param.name,param.passWord],function(err,result) {
         if(!err){
             result={
                 code:200,
@@ -23,9 +22,9 @@ function addStudentAction(req,res,next){
         
     });
 }
-function deleteStudent(req,res,next){
+function deleteUser(req,res,next){
 var param = req.query;
-db.queryArgs(studentSql.deleteOne,param.studentid,function(err,result){
+db.queryArgs(userSql.deleteOne,param.id,function(err,result){
 if(!err){
     result={
         code:200,
@@ -41,14 +40,14 @@ if(!err){
 db.doReturn(res,result); 
 });
 }
-function queryAllStudent(req,res,callback){
+function queryAllUser(req,res,callback){
   var result={};
-    db.query(studentSql.selectAll,function(err,rows){
+    db.query(userSql.selectAll,function(err,rows){
         if(!err){            
             result={
                 code:200,
                 msg:'success',
-                studentlist:rows,
+                userlist:rows,
             }
          
         }else{
@@ -66,20 +65,18 @@ function queryAllStudent(req,res,callback){
     
 }
  
-function updateStudent(req,res,callback){
+function updateUser(req,res,callback){
     let find = true;
     var param = req.body;
     var result={};
-    db.queryArgs(studentSql.selectOne,param.studentid,function(err,rows){
+    db.queryArgs(userSql.selectOne,param.id,function(err,rows){
         if(rows!=null){
-            var student={};
+            var user={};
             var row = rows[0];
-           (typeof(param.name) == 'undefined')? student.name=row.name: student.name=param.name;
-            (typeof(param.subject)=='undefined')?student.subject=row.subject:student.subject=param.subject;
-            (typeof(param.grade)=='undefined')?student.grade=row.grade:student.grade=param.grade;
-            (typeof(param.sex)=='undefined')?student.sex=row.sex:student.sex=param.sex;
-            student.studentid=param.studentid;       
-        db.queryArgs(studentSql.updateOne,[student.name,student.subject,student.grade,student.sex,student.studentid],function(err,rows){
+           (typeof(param.name) == 'undefined')? user.name=row.name: user.name=param.name;
+            (typeof(param.passWord)=='undefined')?user.passWord=row.passWord:user.passWord=param.passWord;
+            user.id=param.id;       
+        db.queryArgs(userSql.updateOne,[user.name,user.passWord],function(err,rows){
             if(!err){
                 result={
                     code:200,
@@ -104,8 +101,8 @@ function updateStudent(req,res,callback){
   
 }
 module.exports={
-    addStudentAction:addStudentAction,
-    deleteStudent:deleteStudent,
-    queryAllStudent:queryAllStudent,
-    updateStudent:updateStudent,
+    addUserAction:addUserAction,
+    deleteUser:deleteUser,
+    queryAllUser:queryAllUser,
+    updateUser:updateUser,
 }
