@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="standard">
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
     <el-form-item>
       <el-button type="primary" @click="dialogFormVisible = true,title = '新增用户'">新增</el-button>
@@ -43,7 +43,7 @@
 <script>
 
 export default {
-  name: 'StudyPlan',
+  name: 'Standard',
   data() {
     return {
       tableData: [],

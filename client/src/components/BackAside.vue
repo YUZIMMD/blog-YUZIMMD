@@ -12,7 +12,7 @@
         active-text-color="#ffd04b"
         :collapse="isCollapse"
         >
-            <el-menu-item :index="'/basic/BackIndex'">
+            <el-menu-item :index="'/basic/backIndex'">
                 <i class="iconfont iconzhuanxiangshenji2"></i>
                 <span slot="title">博客基本情况</span>
             </el-menu-item>
@@ -21,19 +21,20 @@
                     <i class="iconfont iconxiangmujianshejinzhan3"></i>
                     <span>前 端</span>
                 </template>
-                <el-menu-item :index="'/basic/font'">HTML</el-menu-item>
-                <el-menu-item :index="'/basic/font'">CSS</el-menu-item>
-                <el-menu-item :index="'/basic/font'">JAVASCRIPT</el-menu-item>
-                <el-menu-item :index="'/basic/font'">框架</el-menu-item>
-                <el-menu-item :index="'/basic/font'">打包构建工具</el-menu-item>
-                <el-menu-item :index="'/basic/font'">其他</el-menu-item>
+                <el-menu-item :index="'/basic/standard'">前端规范</el-menu-item>
+                <el-menu-item :index="'/basic/html'">HTML</el-menu-item>
+                <el-menu-item :index="'/basic/css'">CSS</el-menu-item>
+                <el-menu-item :index="'/basic/JavaScript'">JAVASCRIPT</el-menu-item>
+                <el-menu-item :index="'/basic/frame'">框架</el-menu-item>
+                <el-menu-item :index="'/basic/tool'">打包构建工具</el-menu-item>
+                <el-menu-item :index="'/basic/more'">其他</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
                     <i class="iconfont iconxiangmujianshejinzhan3"></i>
                     <span>后 端</span>
                 </template>
-                <el-menu-item :index="'/basic/backEnd'">NODEJS</el-menu-item>
+                <el-menu-item :index="'/basic/nodeJs'">NODEJS</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
                 <template slot="title">
@@ -79,7 +80,7 @@ export default {
     data(){
         return{
             isCollapse:false,//页面所有的数据写在这里
-            active:'/basic/BackIndex'
+            active:'/basic/backIndex'
         }
     },
     computed: mapState({

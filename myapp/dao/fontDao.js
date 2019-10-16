@@ -1,12 +1,12 @@
-var userSql=require('../modules/sqlCommand').user_sql;
+var font_sql=require('../modules/sqlCommand').font_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');
 var db = require('../modules/basicConnection');
  
  
-function addUserAction(req,res,next){
+function addFontAction(req,res,next){
     var param = req.body;
-    db.queryArgs(userSql.insertOne,[param.name,param.passWord],function(err,result) {
+    db.queryArgs(font_sql.insertOne,[param.title,param.tags,param.kinds,param.content],function(err,result) {
         if(!err){
             result={
                 code:200,
@@ -22,9 +22,9 @@ function addUserAction(req,res,next){
         
     });
 }
-function deleteUser(req,res,next){
+function deleteFont(req,res,next){
 var param = req.query;
-db.queryArgs(userSql.deleteOne,param.id,function(err,result){
+db.queryArgs(font_sql.deleteOne,param.id,function(err,result){
 if(!err){
     result={
         code:200,
@@ -40,14 +40,14 @@ if(!err){
 db.doReturn(res,result); 
 });
 }
-function queryAllUser(req,res,callback){
+function queryAllFont(req,res,callback){
   var result={};
-    db.query(userSql.selectAll,function(err,rows){
+    db.query(font_sql.selectAll,function(err,rows){
         if(!err){            
             result={
                 code:200,
                 msg:'success',
-                userlist:rows,
+                fontlist:rows,
             }
          
         }else{
@@ -65,18 +65,19 @@ function queryAllUser(req,res,callback){
     
 }
  
-function updateUser(req,res,callback){
+function updateFont(req,res,callback){
     let find = true;
     var param = req.body;
     var result={};
-    db.queryArgs(userSql.selectOne,param.id,function(err,rows){
+    db.queryArgs(font_sql.selectOne,param.id,function(err,rows){
         if(rows!=null){
-            var user={};
+            var font={};
             var row = rows[0];
-           (typeof(param.name) == 'undefined')? user.name=row.name: user.name=param.name;
-            (typeof(param.passWord)=='undefined')?user.passWord=row.passWord:user.passWord=param.passWord;
-            user.id=param.id;       
-        db.queryArgs(userSql.updateOne,[user.name,user.passWord],function(err,rows){
+            for(let i of param){
+                (typeof(param[i]) == 'undefined')? font[i]=row[i]: font[i]=param[i];
+            }
+            font.id=param.id;       
+        db.queryArgs(font_sql.updateOne,[font.title,font.kinds,font.tags,font.content],function(err,rows){
             if(!err){
                 result={
                     code:200,
@@ -101,8 +102,8 @@ function updateUser(req,res,callback){
   
 }
 module.exports={
-    addUserAction:addUserAction,
-    deleteUser:deleteUser,
-    queryAllUser:queryAllUser,
-    updateUser:updateUser,
+    addFontAction:addFontAction,
+    deleteFont:deleteFont,
+    queryAllFont:queryAllFont,
+    updateFont:updateFont,
 }

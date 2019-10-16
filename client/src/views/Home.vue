@@ -1,6 +1,6 @@
 <template>
   <div class="home" id="home">
-    <div class="item1">
+    <div class="item item1">
       <div>
         <div class="user-logo">
           <div class="user-logo-img"></div>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="user-details">
-          <div :class="scrollActive>=0?'fadeInRight':''" v-if="scrollActive >=0">
+          <div class="fadeInRight" v-if="scrollTop >=scrollActive[0]">
             <div>stay hungry  stay foolish</div>
             <div class="hr"></div>
             <div class="size-1">一个时刻保持初学者心态，专注而简单的人</div>
@@ -19,34 +19,34 @@
           </div>
       </div>
     </div>
-    <div class="item2">
+    <div class="item item2">
       <div class="item2-1">
-        <div :class="scrollActive >600?'fadeInLeft':''" v-if="scrollActive>600">
+        <div class="fadeInLeft" v-if="scrollTop >=scrollActive[1]">
           <div class="title">一些想法</div>
           <div class="details">凡是你认真去学习，认真去做过的事情，都不会是徒劳的，时间会证明你学到的都会有用到的那天。遇到难的东西，只要学到新的东西就是进步，不过分思考结果，感受过程-来自心灵鸡汤欺骗法则</div>
         </div>
       </div>
       <div class="item2-2"></div>
     </div>
-    <div class="item3">
+    <div class="item item3">
       <div class="item3-1"></div>
       <div class="item3-2">
-        <div :class="scrollActive >1600?'fadeInRight':''" v-if="scrollActive>1600">
+        <div class="fadeInRight" v-if="scrollTop >=scrollActive[2]">
           <div class="title">一个标题</div>
           <div class="details">一个不知道放什么的模块，但是作为一个前端程序员，我有自己独特的审美（别问为什么，这里就是要放一块，和第二块对应🐶）</div>
         </div>
       </div>
     </div>
-    <div class="item4">
+    <div class="item item4">
       <div class="item4-1">
-        <div :class="scrollActive >2600?'fadeInLeft':''" v-if="scrollActive>2600">
+        <div class="fadeInLeft" v-if="scrollTop >=scrollActive[3]">
           <div class="title">技术栈</div>
           <div class="details"><a class="link" target="_blank" href="https://www.runoob.com/w3cnote/webfrontendstack.html">前端技术图谱</a></div>
         </div>
       </div>
       <div class="item4-2">
        <el-row :gutter="4">
-          <el-col :span="6" :class="scrollActive >2300?'fadeInDown':''" v-if="scrollActive>2300">
+          <el-col :span="6" class="fadeInDown" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">Web三剑客<div class="modal-content"><div>HTML (HyperText Markup Language)<br/>CSS (Cascading Style Sheets)<br/>JavaScript</div></div></div>
           </el-col>
         </el-row>
@@ -54,25 +54,28 @@
           <el-col :span="6">
             <div class="opacity">1</div>
           </el-col>
-           <el-col :span="6" :class="scrollActive >2300?'fadeInDown':''" v-if="scrollActive>2300">
-            <div class="grid-content">库 / 框架<div class="modal-content"><div>基础库,模块化,框架,UI框架
-</div></div></div>
+           <el-col :span="6" class="fadeInDown" v-if="scrollTop >=scrollActive[3]">
+            <div class="grid-content">库 / 框架
+              <div class="modal-content">
+                基础库,模块化,框架,UI框架
+              </div>
+            </div>
           </el-col>
-           <el-col :span="6" :class="scrollActive >2300?'fadeInRight':''" v-if="scrollActive>2300">
+           <el-col :span="6" class="fadeInRight" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">数据可视化<div class="modal-content"><div>D3 ,Echarts ,HighCharts ,Vis.js ,Flot </div></div></div>
           </el-col>
         </el-row>
         <el-row :gutter="4">
-           <el-col :span="6" :class="scrollActive >2300?'fadeInLeft':''" v-if="scrollActive>2300">
+           <el-col :span="6" class="fadeInLeft" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">流程控制<div class="modal-content"><div>ES6,ES7,async,Promise</div></div></div>
           </el-col>
-          <el-col :span="6" :class="scrollActive >2300?'fadeInUpLeft':''" v-if="scrollActive>2300">
+          <el-col :span="6" class="fadeInUpLeft" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">安全<div class="modal-content"><div>Sandbox,XSS,CORS</div></div></div>
           </el-col>
            <el-col :span="6">
             <div class="opacity">1</div>
           </el-col>
-          <el-col :span="6" :class="scrollActive >2300?'fadeInRight':''" v-if="scrollActive>2300">
+          <el-col :span="6" class="fadeInRight" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">基础工具<div class="modal-content">Node.js,Phantom.js,SpiderMonkey</div></div>
           </el-col>
         </el-row>
@@ -83,10 +86,10 @@
            <el-col :span="6">
             <div class="opacity">1</div>
           </el-col>
-           <el-col :span="6" :class="scrollActive >2300?'fadeInUpLeft':''" v-if="scrollActive>2300">
+           <el-col :span="6" class="fadeInUpLeft" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">编辑器<div class="modal-content"><div>Visual Studio Code,Sublime Text ,WebStorm,Vim</div></div></div>
           </el-col>
-           <el-col :span="6" :class="scrollActive >2000?'fadeInUpLeft':''" v-if="scrollActive>2000">
+           <el-col :span="6" class="fadeInUpLeft" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">质量控制<div class="modal-content">111</div></div>
           </el-col>
         </el-row>
@@ -103,22 +106,30 @@ export default {
   name: 'home',
   data(){
       return{
-        scrollActive:0,
-        show:true
+        show:true,
+        scrollActive:[],
+        scrollTop:0
       }
   },
   methods:{
     // 监听原生滚动事件
     handleScroll: function () {
-      let scrollTop = document.getElementById('home').scrollTop;
-      this.scrollActive = scrollTop;
-      console.log(scrollTop)
+      this.scrollTop = document.getElementById('home').scrollTop;
+      console.log(this.scrollTop);
     },
     linkTo(){
       this.$router.push('/index')
     }
   },
   mounted(){
+    let itemTop = document.getElementsByClassName('item');
+    for(let i = 0;i<itemTop.length;i++){
+      if(i == 0){
+        this.scrollActive.push(itemTop[i].offsetTop)
+      }else{
+        this.scrollActive.push(itemTop[i].offsetTop-itemTop[i].offsetTop/2)
+      }
+    }
     window.addEventListener('scroll', this.handleScroll, true);  // 监听（绑定）滚轮滚动事件
   },
   destroyed: function () {

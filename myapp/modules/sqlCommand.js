@@ -13,7 +13,16 @@ var user_sql = {
     selectAll:'select * from tb_user',
     selectName:'select * from tb_user where name = ?'
 }
+var font_sql = {
+    insertOne:'insert into tb_font (title,tags,kinds,content) values (?,?,?,?)',
+    deleteOne:'delete from tb_font where id = ?',
+    updateOne:'update tb_font set title = ?,tags = ?,kinds = ?,content = ?',
+    selectOne:'select * from tb_font where id = ?',
+    selectAll:'select * from tb_font',
+    selectName:'select * from tb_font where name = ?'
+}
 module.exports={
     student_sql,
-    user_sql
+    user_sql,
+    font_sql
 }

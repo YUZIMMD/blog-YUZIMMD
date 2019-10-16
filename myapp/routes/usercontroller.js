@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 var userDao = require('../dao/userDao');
  
-router.get('/addUserAction',function(req,res,next){
-    userDao.addUserAction(req,res,next);
+router.post('/addUserAction',function(req,res,next){
+    userDao.addUserAction(req,res,function(result){
+        res.send(result);
+    });
 });
  
 router.get('/deleteUserAction',function(req,res,next){

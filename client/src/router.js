@@ -28,10 +28,16 @@ export default new Router({
       component: () => import('./views/BackBasic.vue'),
       children:[
         {
-          path: 'BackIndex',
-          name: 'BackIndex',
+          path: 'backIndex',
+          name: 'backIndex',
           meta:'系统基本情况 / 系统基本情况',
           component: () => import('./views/BackIndex/BackIndex.vue')
+        },
+        {
+          path: 'standard',
+          name: 'standard',
+          meta:'前端 / 前端规范',
+          component: () => import('./views/BackIndex/Standard.vue')
         },
         {
           path: 'font',

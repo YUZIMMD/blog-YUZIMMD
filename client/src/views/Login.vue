@@ -36,6 +36,8 @@ export default {
           // 将登录信息存入缓存中
           this.$store.commit('setUserInfo',{name:this.ruleForm.name});
           this.$router.push('/basic/BackIndex');
+        }else{
+          console.log('11111');
         }
       })
     }

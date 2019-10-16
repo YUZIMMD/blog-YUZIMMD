@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 
 var studentRouter = require('./routes/studentcontroller');
 var userRouter = require('./routes/usercontroller');
+var fontRouter = require('./routes/fontcontroller');
 var loginRouter = require('./routes/logincontroller');
 
 var app = express();
@@ -28,11 +29,12 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/students',studentRouter);
-app.use('/user',userRouter);
-app.use('/login',loginRouter);
+app.use('/api', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/students',studentRouter);
+app.use('/api/user',userRouter);
+app.use('/api/login',loginRouter);
+app.use('/api/font',fontRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,6 +43,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  res.setHeader('Access-Control-Allow-Headers','Content-Type,Access-Control-Allow-Headers,Authorization,X-Requested-With')
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

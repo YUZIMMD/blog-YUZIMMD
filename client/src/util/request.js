@@ -1,7 +1,7 @@
 import router from "@/router";
 import axios from "axios";
 
-// axios.defaults.baseURL = ''; // 配置axios请求的地址
+axios.defaults.baseURL = '/api'; // 配置axios请求的地址
 //配置发送请求前的拦截器.可以设置带登录用户信息
 axios.interceptors.request.use(
   config => {
