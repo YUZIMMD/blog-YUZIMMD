@@ -34,12 +34,6 @@ export default new Router({
           component: () => import('./views/BackIndex/BackIndex.vue')
         },
         {
-          path: 'standard',
-          name: 'standard',
-          meta:'前端 / 前端规范',
-          component: () => import('./views/BackIndex/Standard.vue')
-        },
-        {
           path: 'font',
           name: 'font',
           meta:'前端',

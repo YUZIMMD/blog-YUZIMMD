@@ -21,20 +21,14 @@
                     <i class="iconfont iconxiangmujianshejinzhan3"></i>
                     <span>前 端</span>
                 </template>
-                <el-menu-item :index="'/basic/standard'">前端规范</el-menu-item>
-                <el-menu-item :index="'/basic/html'">HTML</el-menu-item>
-                <el-menu-item :index="'/basic/css'">CSS</el-menu-item>
-                <el-menu-item :index="'/basic/JavaScript'">JAVASCRIPT</el-menu-item>
-                <el-menu-item :index="'/basic/frame'">框架</el-menu-item>
-                <el-menu-item :index="'/basic/tool'">打包构建工具</el-menu-item>
-                <el-menu-item :index="'/basic/more'">其他</el-menu-item>
+                <el-menu-item :index="'/basic/font'">前端</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
                     <i class="iconfont iconxiangmujianshejinzhan3"></i>
                     <span>后 端</span>
                 </template>
-                <el-menu-item :index="'/basic/nodeJs'">NODEJS</el-menu-item>
+                <el-menu-item :index="'/basic/backEnd'">NODEJS</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
                 <template slot="title">
