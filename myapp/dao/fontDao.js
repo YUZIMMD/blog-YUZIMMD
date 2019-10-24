@@ -2,11 +2,12 @@ var font_sql=require('../modules/sqlCommand').font_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');
 var db = require('../modules/basicConnection');
- 
+var dayjs = require('dayjs');
  
 function addFontAction(req,res,next){
     var param = req.body;
-    db.queryArgs(font_sql.insertOne,[param.title,param.tags,param.kinds,param.content],function(err,result) {
+    var createTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
+    db.queryArgs(font_sql.insertOne,[param.title,param.tags,param.kinds,param.content,createTime],function(err,result) {
         if(!err){
             result={
                 code:200,
@@ -69,15 +70,19 @@ function updateFont(req,res,callback){
     let find = true;
     var param = req.body;
     var result={};
+    var updateTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
     db.queryArgs(font_sql.selectOne,param.id,function(err,rows){
+        console.log('rows'+JSON.stringify(rows))
+        console.log('params'+JSON.stringify(param))
         if(rows!=null){
             var font={};
             var row = rows[0];
-            for(let i of param){
+            for(let i in param){
                 (typeof(param[i]) == 'undefined')? font[i]=row[i]: font[i]=param[i];
             }
-            font.id=param.id;       
-        db.queryArgs(font_sql.updateOne,[font.title,font.kinds,font.tags,font.content],function(err,rows){
+            font.id=param.id;   
+            console.log('12213123213',font)    
+        db.queryArgs(font_sql.updateOne,[font.title,font.tags,font.kinds,font.content,updateTime,font.id],function(err,rows){
             if(!err){
                 result={
                     code:200,

@@ -76,7 +76,7 @@ function updateUser(req,res,callback){
            (typeof(param.name) == 'undefined')? user.name=row.name: user.name=param.name;
             (typeof(param.passWord)=='undefined')?user.passWord=row.passWord:user.passWord=param.passWord;
             user.id=param.id;       
-        db.queryArgs(userSql.updateOne,[user.name,user.passWord],function(err,rows){
+        db.queryArgs(userSql.updateOne,[user.name,user.passWord,user.id],function(err,rows){
             if(!err){
                 result={
                     code:200,

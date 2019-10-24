@@ -8,15 +8,15 @@ var student_sql={
 var user_sql = {
     insertOne:'insert into tb_user (name,passWord) values (?,?)',
     deleteOne:'delete from tb_user where id = ?',
-    updateOne:'update tb_user set name = ?,passWord = ?',
+    updateOne:'update tb_user set name = ?,passWord = ? where id = ?',
     selectOne:'select * from tb_user where id = ?',
     selectAll:'select * from tb_user',
     selectName:'select * from tb_user where name = ?'
 }
 var font_sql = {
-    insertOne:'insert into tb_font (title,tags,kinds,content) values (?,?,?,?)',
+    insertOne:'insert into tb_font (title,tags,kinds,content,createTime) values (?,?,?,?,?)',
     deleteOne:'delete from tb_font where id = ?',
-    updateOne:'update tb_font set title = ?,tags = ?,kinds = ?,content = ?',
+    updateOne:'update tb_font set title = ?,tags = ?,kinds = ?,content = ?,updateTime = ? where id = ?',
     selectOne:'select * from tb_font where id = ?',
     selectAll:'select * from tb_font',
     selectName:'select * from tb_font where name = ?'

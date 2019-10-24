@@ -19,7 +19,7 @@ router.get('/queryfontAction',function(req,res,next){
 });
 
 router.post('/updatefontAction',function(req,res,next){
-    fontDao.updatefont(req,res,function(result){
+    fontDao.updateFont(req,res,function(result){
         res.send(result);
     });
 }) ;   
