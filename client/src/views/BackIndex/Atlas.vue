@@ -55,7 +55,7 @@
           label="文章标签">
         </el-table-column>
         <el-table-column
-          prop="createTime"
+          prop="uploadTime"
           label="上传时间">
         </el-table-column>
         <el-table-column
@@ -76,9 +76,9 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
+
 export default {
-  name: 'Font',
+  name: 'Atlas',
   data() {
     return {
       tableData: [],
@@ -134,7 +134,7 @@ export default {
   },
   methods:{
     submitFun(){
-      let url = this.title == '新增文章'?'/font/addfontAction':'/font/updatefontAction'
+      let url = this.title == '新增文章'?'/font/addfontAction':'/user/updateUserAction'
       this.$http('post',url,this.form).then(data=>{
         if(data.code == 200){
           this.dialogFormVisible = false;
@@ -144,13 +144,7 @@ export default {
     },
     init(){
       this.$http('get','/font/queryfontAction').then(data=>{
-        this.tableData = data.fontlist.map(item=>{
-          if(item.createTime){
-            item.createTime = dayjs(dayjs(item.createTime).valueOf()).format('YYYY-MM-DD HH:mm:ss');
-            item.updateTime = dayjs(dayjs(item.updateTime).valueOf()).format('YYYY-MM-DD HH:mm:ss');
-          }
-          return item
-        })
+        this.tableData = data.fontlist;
       });
     },
     updateUser(row){
@@ -169,7 +163,6 @@ export default {
   },
   mounted(){
     this.init();
-    console.log(dayjs)
   }
 }
 </script>

@@ -58,6 +58,12 @@ export default new Router({
           component: () => import('./views/BackIndex/StudyPlan.vue')
         },
         {
+          path: 'atlas',
+          name: 'atlas',
+          meta:'自检图谱 / 自检图谱',
+          component: () => import('./views/BackIndex/Atlas.vue')
+        },
+        {
           path: 'userManage',
           name: 'userManage',
           meta:'博客后台登录用户管理',

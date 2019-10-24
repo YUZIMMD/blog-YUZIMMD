@@ -38,6 +38,10 @@
                 <el-menu-item :index="'/basic/progressReport'">进度报表</el-menu-item>
                 <el-menu-item :index="'/basic/studyPlan'">学习计划</el-menu-item>
             </el-submenu>
+            <el-menu-item :index="'/basic/atlas'">
+                <i class="iconfont iconzhuanxiangshenji2"></i>
+                <span slot="title">自检图谱</span>
+            </el-menu-item>
             <el-menu-item :index="'/basic/userManage'">
                 <i class="iconfont iconzhuanxiangshenji2"></i>
                 <span slot="title">博客后台用户管理</span>
