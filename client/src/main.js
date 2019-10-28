@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
+import './common/css/index.less'
 Vue.prototype.$http = iHttp;
 Vue.config.productionTip = false
 Vue.use(ElementUI);

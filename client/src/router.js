@@ -18,6 +18,11 @@ export default new Router({
       component: () => import('./views/Home1.vue')
     },
     {
+      path: '/home2',
+      name: 'home2',
+      component: () => import('./views/Home2.vue')
+    },
+    {
       path: '/index',
       name: 'index',
       component: () => import('./views/Index.vue')
@@ -26,6 +31,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: () => import('./views/Login.vue')
+    },
+    {
+      path: '/FrontEndMap',
+      name: 'FrontEndMap',
+      component: () => import('./views/FrontEndMap.vue')
     },
     {
       path: '/basic',
