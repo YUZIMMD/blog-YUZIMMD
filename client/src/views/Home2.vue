@@ -139,7 +139,7 @@
           <el-col :span="6" class="fadeInUpLeft" v-if="scrollTop >=scrollActive[3]">
             <div class="grid-content">
               质量控制
-              <div class="modal-content">111</div>
+              <div class="modal-content">11231231</div>
             </div>
           </el-col>
         </el-row>
