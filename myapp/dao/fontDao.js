@@ -72,8 +72,6 @@ function updateFont(req,res,callback){
     var result={};
     var updateTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
     db.queryArgs(font_sql.selectOne,param.id,function(err,rows){
-        console.log('rows'+JSON.stringify(rows))
-        console.log('params'+JSON.stringify(param))
         if(rows!=null){
             var font={};
             var row = rows[0];
@@ -81,7 +79,6 @@ function updateFont(req,res,callback){
                 (typeof(param[i]) == 'undefined')? font[i]=row[i]: font[i]=param[i];
             }
             font.id=param.id;   
-            console.log('12213123213',font)    
         db.queryArgs(font_sql.updateOne,[font.title,font.tags,font.kinds,font.content,updateTime,font.id],function(err,rows){
             if(!err){
                 result={
