@@ -30,6 +30,10 @@
                 </template>
                 <el-menu-item :index="'/basic/backEnd'">NODEJS</el-menu-item>
             </el-submenu>
+            <el-menu-item :index="'/basic/server'">
+                <i class="iconfont iconzhuanxiangshenji2"></i>
+                <span slot="title">服务器</span>
+            </el-menu-item>
             <el-submenu index="4">
                 <template slot="title">
                     <i class="iconfont icongongzuojianbao2"></i>

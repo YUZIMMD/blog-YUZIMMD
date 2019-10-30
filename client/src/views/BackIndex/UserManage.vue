@@ -2,7 +2,7 @@
 <div>
   <el-form :inline="true" :model="formInline" class="demo-form-inline">
     <el-form-item>
-      <el-button type="primary" @click="dialogFormVisible = true,title = '新增用户'">新增</el-button>
+      <el-button class="addBtn" type="primary" @click="dialogFormVisible = true,title = '新增用户'">新增</el-button>
     </el-form-item>
   </el-form>
   <el-dialog :title="title" :visible.sync="dialogFormVisible">

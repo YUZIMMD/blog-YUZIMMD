@@ -453,7 +453,7 @@ export default {
             layout: "force",
             force: {
               repulsion: 2000,
-              edgeLength: 100,
+              edgeLength: [20,100],
               focusNodeAdjacenc: true
             },
             roam: "move",

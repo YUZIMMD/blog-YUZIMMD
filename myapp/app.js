@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var studentRouter = require('./routes/studentcontroller');
 var userRouter = require('./routes/usercontroller');
 var fontRouter = require('./routes/fontcontroller');
+var endRouter = require('./routes/endcontroller');
 var loginRouter = require('./routes/logincontroller');
 
 var app = express();
@@ -35,6 +36,7 @@ app.use('/api/students',studentRouter);
 app.use('/api/user',userRouter);
 app.use('/api/login',loginRouter);
 app.use('/api/font',fontRouter);
+app.use('/api/end',endRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -10,7 +10,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/Home.vue')
+      component: () => import('./views/Home2.vue')
     },
     {
       path: '/home1',
@@ -83,6 +83,12 @@ export default new Router({
           name: 'userManage',
           meta:'博客后台登录用户管理',
           component: () => import('./views/BackIndex/UserManage.vue')
+        },
+        {
+          path: 'server',
+          name: 'server',
+          meta:'服务器',
+          component: () => import('./views/BackIndex/Server.vue')
         }
       ]
     }

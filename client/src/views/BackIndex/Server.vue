@@ -1,5 +1,6 @@
+// 服务器
 <template>
-  <div class="end">
+  <div class="font">
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item>
         <el-button
@@ -7,11 +8,6 @@
           class="addBtn"
           @click="dialogFormVisible = true,title = '新增文章'"
         >新 增</el-button>
-      </el-form-item>
-      <el-form-item>
-        <el-select class="selectBox" v-model="form.kinds" placeholder="请选择所属大类">
-          <el-option v-for="(item, index) in options" :key="index" :label="item" :value="index"></el-option>
-        </el-select>
       </el-form-item>
       <el-form-item>
         <el-input class="searchBox" v-model="input" placeholder="请输入关键字"></el-input>
@@ -22,11 +18,6 @@
       <el-form :model="form">
         <el-form-item label="标题" :label-width="formLabelWidth">
           <el-input v-model="form.title" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="所属分类" :label-width="formLabelWidth">
-          <el-select v-model="form.kinds" placeholder="请选择">
-            <el-option v-for="(item, index) in options" :key="index" :label="item" :value="index"></el-option>
-          </el-select>
         </el-form-item>
         <el-form-item label="文章标签" :label-width="formLabelWidth">
           <el-input v-model="form.tags" auto-complete="off"></el-input>
@@ -43,9 +34,6 @@
     <div class="study-plan">
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="title" label="文章标题"></el-table-column>
-        <el-table-column label="所属大类">
-          <template slot-scope="scope">{{ options[scope.row.kinds] }}</template>
-        </el-table-column>
         <el-table-column label="文章标签">
           <template slot-scope="scope">
             <el-tag
@@ -71,12 +59,11 @@
 
 <script>
 import dayjs from "dayjs";
-
 export default {
   name: "Font",
   data() {
     return {
-      input:'',
+      input: "",
       tableData: [],
       formInline: {
         user: "",
@@ -85,11 +72,10 @@ export default {
       dialogFormVisible: false,
       form: {
         title: "",
-        kinds: "",
         tags: "",
         content: ""
       },
-      options: ["后端规范", "数据库", "框架", "工具"],
+      options: ["前端规范", "html", "css", "JavaScript", "框架", "工具"],
       formLabelWidth: "120px",
       title: "新增文章",
       editorOption: {
@@ -113,16 +99,7 @@ export default {
               [{ align: [] }],
               ["link", "image", "video"],
               ["clean"] // remove formatting button
-            ] // 工具栏
-            // handlers: {
-            //     'image': function (value) {
-            //         if (value) {
-            //             // alert('自定义图片')
-            //         } else {
-            //             this.quill.format('image', false);
-            //         }
-            //     }
-            // }
+            ]
           }
         }
       }
@@ -132,8 +109,8 @@ export default {
     submitFun() {
       let url =
         this.title == "新增文章"
-          ? "/end/addendAction"
-          : "/user/updateendAction";
+          ? "/font/addfontAction"
+          : "/font/updatefontAction";
       this.$http("post", url, this.form).then(data => {
         if (data.code == 200) {
           this.dialogFormVisible = false;
@@ -142,17 +119,16 @@ export default {
       });
     },
     init() {
-      this.$http("get", "/end/queryendAction").then(data => {
-        this.tableData = data.endlist.map(item => {
-          if (item.createTime)
+      this.$http("get", "/font/queryfontAction").then(data => {
+        this.tableData = data.fontlist.map(item => {
+          if (item.createTime) {
             item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
               "YYYY-MM-DD HH:mm:ss"
             );
-          if (item.updateTime)
             item.updateTime = dayjs(dayjs(item.updateTime).valueOf()).format(
               "YYYY-MM-DD HH:mm:ss"
             );
-
+          }
           return item;
         });
       });
@@ -164,7 +140,7 @@ export default {
       console.log(row);
     },
     deleteUser(row) {
-      this.$http("get", "/end/deleteendAction?id=" + row.id).then(data => {
+      this.$http("get", "/font/deletefontAction?id=" + row.id).then(data => {
         if (data.code == 200) {
           this.init();
         }
@@ -173,6 +149,7 @@ export default {
   },
   mounted() {
     this.init();
+    console.log(dayjs);
   }
 };
 </script>

@@ -21,7 +21,7 @@ export default {
   },
   methods: {
       linkToHome(){
-          this.$router.push('/home2')
+          this.$router.push('/')
       },
     atlasGetKeys(obj, keyName) {
       let keys = Object.keys(obj); // 获取到keys数组
