@@ -18,21 +18,25 @@
             </el-menu-item>
             <el-submenu index="2">
                 <template slot="title">
-                    <i class="iconfont iconxiangmujianshejinzhan3"></i>
+                    <i class="iconfont iconsyzhengwuxinxizhenghe"></i>
                     <span>前 端</span>
                 </template>
                 <el-menu-item :index="'/basic/font'">前端</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
-                    <i class="iconfont iconxiangmujianshejinzhan3"></i>
+                    <i class="iconfont iconzuzhijigou"></i>
                     <span>后 端</span>
                 </template>
                 <el-menu-item :index="'/basic/backEnd'">NODEJS</el-menu-item>
             </el-submenu>
             <el-menu-item :index="'/basic/server'">
-                <i class="iconfont iconzhuanxiangshenji2"></i>
+                <i class="iconfont iconxiangmujianshejinzhan3"></i>
                 <span slot="title">服务器</span>
+            </el-menu-item>
+            <el-menu-item :index="'/basic/other'">
+                <i class="el-icon-star-on" style="position:relative;left:-5px;margin-right:0px;font-size:20px"></i>
+                <span slot="title">其他</span>
             </el-menu-item>
             <el-submenu index="4">
                 <template slot="title">
@@ -40,14 +44,13 @@
                     <span>学习简报</span>
                 </template>
                 <el-menu-item :index="'/basic/progressReport'">进度报表</el-menu-item>
-                <el-menu-item :index="'/basic/studyPlan'">学习计划</el-menu-item>
             </el-submenu>
             <el-menu-item :index="'/basic/atlas'">
-                <i class="iconfont iconzhuanxiangshenji2"></i>
-                <span slot="title">自检图谱</span>
+                <i class="iconfont iconxiangmujibenqingkuangsvg1"></i>
+                <span slot="title">前端自检表格</span>
             </el-menu-item>
             <el-menu-item :index="'/basic/userManage'">
-                <i class="iconfont iconzhuanxiangshenji2"></i>
+                <i class="iconfont iconyonghuming"></i>
                 <span slot="title">博客后台用户管理</span>
             </el-menu-item>
             <!-- <template v-for="item in treeMenus">

@@ -1,3 +1,4 @@
+/** 启动页1 */
 <template>
   <div class="home1" id="home1">
     <div class="item item1">

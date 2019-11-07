@@ -1,3 +1,4 @@
+/** 首页 */ 
 <template>
   <div class="basic-index">
     <!-- echarts -->
@@ -149,15 +150,16 @@ export default {
           containLabel: true
         },
         legend: {
-          data: ["1", "2", "3"],
+           icon: "rect",
+          data: ["前端", "后端", "服务器","其他"],
           right: 10,
           top: 12,
           textStyle: {
-            color: "#fff"
+            color: "#000"
           },
-          itemWidth: 12,
-          itemHeight: 10
-          // itemGap: 35
+          itemWidth: 14,
+          itemHeight: 10,
+          itemGap: 13
         },
         xAxis: {
           type: "category",
@@ -227,7 +229,7 @@ export default {
         ],
         series: [
           {
-            name: "1",
+            name: "前端",
             type: "bar",
             barWidth: "10%",
             itemStyle: {
@@ -248,7 +250,7 @@ export default {
             data: [1, 5, 10, 15, 20, 25, 30, 35, 40]
           },
           {
-            name: "2",
+            name: "后端",
             type: "bar",
             barWidth: "10%",
             itemStyle: {
@@ -269,7 +271,28 @@ export default {
             data: [1, 5, 10, 15, 20, 25, 30, 35, 40]
           },
           {
-            name: "3",
+            name: "服务器",
+            type: "bar",
+            barWidth: "10%",
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "#248ff7"
+                  },
+                  {
+                    offset: 1,
+                    color: "#6851f1"
+                  }
+                ]),
+                barBorderRadius: 11
+              }
+            },
+            data: [1, 5, 10, 15, 20, 25, 30, 35, 40]
+          },
+          {
+            name: "其他",
             type: "bar",
             barWidth: "10%",
             itemStyle: {
@@ -349,7 +372,7 @@ export default {
           itemHeight: 10,
           itemGap: 13,
           data: ["前端", "后端", "服务器","语言","其他"],
-          right: "4%",
+          right: 5,
           top:'4%',
           textStyle: {
             fontSize: 12
@@ -412,7 +435,7 @@ export default {
         },
         series: [
           {
-            name: "移动",
+            name: "前端",
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -456,7 +479,7 @@ export default {
             data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122]
           },
           {
-            name: "电信",
+            name: "后端",
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -500,7 +523,7 @@ export default {
             data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
           },
           {
-            name: "联通",
+            name: "服务器",
             type: "line",
             smooth: true,
             symbol: "circle",
@@ -542,7 +565,51 @@ export default {
               }
             },
             data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
-          }
+          },
+           {
+            name: "其他",
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 5,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                width: 1
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: "rgba(44,71,100, 0.1)"
+                    },
+                    {
+                      offset: 0.8,
+                      color: "rgba(44,71,100, 0)"
+                    }
+                  ],
+                  false
+                ),
+                shadowColor: "rgba(0, 0, 0, 0.1)",
+                shadowBlur: 10
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: "#FFD04B",
+                borderColor: "rgba(44,71,100,0.2)",
+                borderWidth: 12
+              }
+            },
+            data: [100, 182, 125, 175, 130, 171, 114, 180, 130, 100, 185, 102]
+          },
         ]
       };
       myChart.setOption(option);

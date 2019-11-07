@@ -67,15 +67,9 @@ export default new Router({
           component: () => import('./views/BackIndex/ProgressReport.vue')
         },
         {
-          path: 'studyPlan',
-          name: 'studyPlan',
-          meta:'学习简报 / 学习计划',
-          component: () => import('./views/BackIndex/StudyPlan.vue')
-        },
-        {
           path: 'atlas',
           name: 'atlas',
-          meta:'自检图谱 / 自检图谱',
+          meta:'前端自检表格 / 前端自检表格',
           component: () => import('./views/BackIndex/Atlas.vue')
         },
         {
@@ -89,6 +83,12 @@ export default new Router({
           name: 'server',
           meta:'服务器',
           component: () => import('./views/BackIndex/Server.vue')
+        },
+        {
+          path: 'other',
+          name: 'other',
+          meta:'其他',
+          component: () => import('./views/BackIndex/Other.vue')
         }
       ]
     }

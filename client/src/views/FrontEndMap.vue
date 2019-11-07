@@ -1,3 +1,4 @@
+/** 自检图谱 */
 <template>
   <div>
     <div class="FrontEndMap" id="FrontEndMap"></div>
@@ -82,7 +83,7 @@ export default {
             type: "graph",
             layout: "force",
             force: {
-              repulsion: 1000,
+              repulsion: 800,
               edgeLength: 50,
               focusNodeAdjacenc: true
             },

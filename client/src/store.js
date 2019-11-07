@@ -23,22 +23,6 @@ export default new Vuex.Store({
           CSS: false,
           手写: false
         },
-        计算机基础: {
-          编译原理: false,
-          网络协议: false,
-          设计模式: false
-        },
-        数据结构和算法: {
-          javaScript编码能力: false,
-          手动实现前端轮子: false,
-          数据结构: false,
-          算法: false
-        },
-        运行环境: {
-          浏览器API: false,
-          浏览器原理: false,
-          Node: false
-        },
         框架和类库: {
           TypeScript: false,
           react: false,
@@ -54,6 +38,22 @@ export default new Vuex.Store({
           开发提速: false,
           持续集成: false,
           版本控制: false
+        },
+        数据结构和算法: {
+          javaScript编码能力: false,
+          手动实现前端轮子: false,
+          数据结构: false,
+          算法: false
+        },
+        计算机基础: {
+          编译原理: false,
+          网络协议: false,
+          设计模式: false
+        },
+        运行环境: {
+          浏览器API: false,
+          浏览器原理: false,
+          Node: false
         },
         项目和业务: {
           后端技能: false,

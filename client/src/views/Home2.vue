@@ -1,3 +1,4 @@
+/** 启动页2 */
 <template>
   <div class="home" id="home">
     <div class="item item1">
@@ -542,7 +543,7 @@ export default {
         margin-left: 8%;
         .hr {
           width: 8%;
-          border-bottom: 1px solid #ffffff;
+          border-bottom: 2px solid #ffffff;
           margin: 20px 0 40px 0;
         }
         .size-1 {

@@ -1,3 +1,4 @@
+/** 页面模版 */
 <template>
   <div id="basic"> 
       <!-- 头部 -->

@@ -1,6 +1,6 @@
-// 服务器
+/** 服务器 */
 <template>
-  <div class="font">
+  <div class="server">
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item>
         <el-button
@@ -109,8 +109,8 @@ export default {
     submitFun() {
       let url =
         this.title == "新增文章"
-          ? "/font/addfontAction"
-          : "/font/updatefontAction";
+          ? "/server/addserverAction"
+          : "/server/updateserverAction";
       this.$http("post", url, this.form).then(data => {
         if (data.code == 200) {
           this.dialogFormVisible = false;
@@ -119,8 +119,8 @@ export default {
       });
     },
     init() {
-      this.$http("get", "/font/queryfontAction").then(data => {
-        this.tableData = data.fontlist.map(item => {
+      this.$http("get", "/server/queryserverAction").then(data => {
+        this.tableData = data.serverlist.map(item => {
           if (item.createTime) {
             item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
               "YYYY-MM-DD HH:mm:ss"
@@ -140,7 +140,7 @@ export default {
       console.log(row);
     },
     deleteUser(row) {
-      this.$http("get", "/font/deletefontAction?id=" + row.id).then(data => {
+      this.$http("get", "/server/deleteserverAction?id=" + row.id).then(data => {
         if (data.code == 200) {
           this.init();
         }
