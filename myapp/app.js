@@ -14,6 +14,9 @@ var userRouter = require('./routes/usercontroller');
 var fontRouter = require('./routes/fontcontroller');
 var endRouter = require('./routes/endcontroller');
 var loginRouter = require('./routes/logincontroller');
+var serverRouter = require('./routes/servercontroller');
+var otherRouter = require('./routes/othercontroller');
+var uploadImgRouter = require('./routes/uploadImgcontroller');
 
 var app = express();
 
@@ -29,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
   extended:true
 }));
+/* 设置静态资源目录 */
+app.use('/serverImage', express.static(path.join(__dirname, 'serverImage')));
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
@@ -37,6 +42,9 @@ app.use('/api/user',userRouter);
 app.use('/api/login',loginRouter);
 app.use('/api/font',fontRouter);
 app.use('/api/end',endRouter);
+app.use('/api/server',serverRouter);
+app.use('/api/other',otherRouter);
+app.use('/api/uploadImg',uploadImgRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

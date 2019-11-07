@@ -29,9 +29,27 @@ var end_sql = {
     selectAll:'select * from tb_end',
     selectName:'select * from tb_end where name = ?'
 }
+var server_sql = {
+    insertOne:'insert into tb_server (title,tags,content,createTime) values (?,?,?,?)',
+    deleteOne:'delete from tb_server where id = ?',
+    updateOne:'update tb_server set title = ?,tags = ?,content = ?,updateTime = ? where id = ?',
+    selectOne:'select * from tb_server where id = ?',
+    selectAll:'select * from tb_server',
+    selectName:'select * from tb_server where name = ?'
+}
+var other_sql = {
+    insertOne:'insert into tb_other (title,tags,kinds,content,createTime) values (?,?,?,?,?)',
+    deleteOne:'delete from tb_other where id = ?',
+    updateOne:'update tb_other set title = ?,tags = ?,kinds = ?,content = ?,updateTime = ? where id = ?',
+    selectOne:'select * from tb_other where id = ?',
+    selectAll:'select * from tb_other',
+    selectName:'select * from tb_other where name = ?'
+}
 module.exports={
     student_sql,
     user_sql,
     font_sql,
-    end_sql
+    end_sql,
+    server_sql,
+    other_sql
 }
