@@ -22,6 +22,12 @@ router.post('/updatefontAction',function(req,res,next){
     fontDao.updateFont(req,res,function(result){
         res.send(result);
     });
-}) ;   
+});  
+
+router.get('/queryfontOneAction',function(req,res,next){
+    fontDao.queryOneFont(req,res,function(result){
+        res.json(result);
+    });
+});   
 
 module.exports = router;

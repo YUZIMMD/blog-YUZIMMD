@@ -4,6 +4,9 @@ var config = require('../modules/dbconfig');
 var db = require('../modules/basicConnection');
 var dayjs = require('dayjs');
  
+/**
+ * 新增一条数据
+*/
 function addFontAction(req,res,next){
     var param = req.body;
     var createTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
@@ -23,6 +26,9 @@ function addFontAction(req,res,next){
         
     });
 }
+/**
+ * 通过id删除一条数据
+*/
 function deleteFont(req,res,next){
 var param = req.query;
 db.queryArgs(font_sql.deleteOne,param.id,function(err,result){
@@ -41,6 +47,9 @@ if(!err){
 db.doReturn(res,result); 
 });
 }
+/**
+ * 查询所有数据
+*/
 function queryAllFont(req,res,callback){
   var result={};
     db.query(font_sql.selectAll,function(err,rows){
@@ -59,13 +68,11 @@ function queryAllFont(req,res,callback){
            
         }     
         callback(result);
-    });
-  
-    
- 
-    
+    });   
 }
- 
+ /**
+ * 通过id来修改数据
+*/
 function updateFont(req,res,callback){
     let find = true;
     var param = req.body;
@@ -98,14 +105,33 @@ function updateFont(req,res,callback){
         }
         
     });
- 
- 
-    
-  
 }
+/**
+ * 通过id查询数据
+*/
+function queryOneFont(req,res,callback){
+    var param = req.query;
+    var result={};
+    db.queryArgs(font_sql.selectOne,param.id,function(err,rows){
+        if(!err){
+            result={
+                code:200,
+                info:rows[0]
+            }
+        }else{
+            result={
+                code:201,
+                msg:'err:'+err
+            }
+        }
+        callback(result);
+    });
+}
+
 module.exports={
     addFontAction:addFontAction,
     deleteFont:deleteFont,
     queryAllFont:queryAllFont,
     updateFont:updateFont,
+    queryOneFont:queryOneFont
 }

@@ -6,39 +6,40 @@
         <el-button
           type="primary"
           class="addBtn"
+          size="small"
           @click="dialogFormVisible = true,title = '新增文章'"
         >新 增</el-button>
       </el-form-item>
       <el-form-item>
-        <el-select class="selectBox" v-model="form.kinds" placeholder="请选择所属大类">
+        <el-select class="selectBox" v-model="form.kinds" placeholder="请选择所属大类" size="small">
           <el-option v-for="(item, index) in options" :key="index" :label="item" :value="index"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input class="searchBox" v-model="input" placeholder="请输入关键字"></el-input>
-        <el-button type="primary" class="searchBtn">搜 索</el-button>
+        <el-input class="searchBox" v-model="input" placeholder="请输入关键字" size="small"></el-input>
+        <el-button type="primary" class="searchBtn" size="small">搜 索</el-button>
       </el-form-item>
     </el-form>
     <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="标题" :label-width="formLabelWidth">
-          <el-input v-model="form.title" auto-complete="off"></el-input>
+          <el-input v-model="form.title" auto-complete="off" size="small"></el-input>
         </el-form-item>
         <el-form-item label="所属分类" :label-width="formLabelWidth">
-          <el-select v-model="form.kinds" placeholder="请选择">
+          <el-select v-model="form.kinds" placeholder="请选择" size="small">
             <el-option v-for="(item, index) in options" :key="index" :label="item" :value="index"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="文章标签" :label-width="formLabelWidth">
-          <el-input v-model="form.tags" auto-complete="off"></el-input>
+          <el-input v-model="form.tags" auto-complete="off" size="small"></el-input>
         </el-form-item>
         <el-form-item label="文章内容" :label-width="formLabelWidth">
           <quill-editor v-model="form.content" :options="editorOption" ref="QuillEditor"></quill-editor>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="submitFun">确 定</el-button>
+        <el-button @click="dialogFormVisible = false" size="small">取 消</el-button>
+        <el-button type="primary" @click="submitFun" size="small">确 定</el-button>
       </div>
     </el-dialog>
     <div class="study-plan">

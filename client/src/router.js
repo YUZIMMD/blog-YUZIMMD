@@ -38,6 +38,11 @@ export default new Router({
       component: () => import('./views/FrontEndMap.vue')
     },
     {
+      path: '/details',
+      name: 'details',
+      component: () => import('./views/Details.vue')
+    },
+    {
       path: '/basic',
       name: 'basic',//模版文件
       component: () => import('./views/BackBasic.vue'),
