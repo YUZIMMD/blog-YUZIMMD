@@ -5,7 +5,7 @@
       <Header></Header>
       <div class="item1">
         <div class="left">
-          <div class="logo">koorty</div>
+          <div class="logo"></div>
         </div>
         <div class="right">WORK HARD,PLAY HARD</div>
       </div>
@@ -100,12 +100,14 @@ export default {
           height: 200px;
           margin: 0 auto;
           border-radius: 100px;
-          border: 2px solid #793d47;
-          box-shadow: 0px 0px 24px 16px rgba(115, 53, 53, 0.8);
+          // border: 2px solid #332f30;
+          box-shadow: 0px 0px 12px 6px rgba(99, 90, 90, 0.8);
           font-size: 4rem;
           font-weight: bold;
           line-height: 200px;
           text-align: center;
+          background: url('../assets/image/logo.png');
+          background-size: 100% 100%;
         }
       }
       .right {

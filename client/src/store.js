@@ -64,7 +64,16 @@ export default new Vuex.Store({
         学习提升: false,
         技术之外: false
       }
-    }
+    },
+    clientMenuList:[
+      {
+        '首页':{
+          list:['前端'], // 子菜单
+          sub:{} // 下拉菜单
+        },
+      }
+    ],
+    activeClientMenu:'' // 客户端选中的大菜单
   },
   mutations: {
     setUserInfo(state, data) {
