@@ -224,6 +224,7 @@ export default {
     },
     drawEcharts() {
       // 基于准备好的dom，初始化echarts实例
+      let param = (document.body.clientWidth < 500)? 2 : 1;
       let myChart = echarts.init(document.getElementById("item2-2"));
       // 绘制图表
       let option = {
@@ -239,8 +240,8 @@ export default {
             type: "graph",
             layout: "force",
             force: {
-              repulsion: 500,
-              edgeLength: 10
+              repulsion: 500/(param*2),
+              edgeLength: 10/param
             },
             roam: "move",
             label: {
@@ -252,7 +253,7 @@ export default {
               {
                 name: "考研",
                 value: 10000,
-                symbolSize: 100,
+                symbolSize: 100/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -267,7 +268,7 @@ export default {
               {
                 name: "学习",
                 value: 6100081,
-                symbolSize: 150,
+                symbolSize: 150/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -282,7 +283,7 @@ export default {
               {
                 name: "吃饭",
                 value: 43806,
-                symbolSize: 110,
+                symbolSize: 110/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -297,7 +298,7 @@ export default {
               {
                 name: "英语",
                 value: 4055,
-                symbolSize: 80,
+                symbolSize: 80/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -312,7 +313,7 @@ export default {
               {
                 name: "日语",
                 value: 2467,
-                symbolSize: 70,
+                symbolSize: 70/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -327,7 +328,7 @@ export default {
               {
                 name: "工作",
                 value: 224400,
-                symbolSize: 130,
+                symbolSize: 130/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -342,7 +343,7 @@ export default {
               {
                 name: "家人",
                 value: 1,
-                symbolSize: 100,
+                symbolSize: 100/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -357,7 +358,7 @@ export default {
               {
                 name: "朋友",
                 value: 1484,
-                symbolSize: 100,
+                symbolSize: 100/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -372,7 +373,7 @@ export default {
               {
                 name: "旅游",
                 value: 712,
-                symbolSize: 90,
+                symbolSize: 90/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -387,7 +388,7 @@ export default {
               {
                 name: "电影",
                 value: 965,
-                symbolSize: 50,
+                symbolSize: 50/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -402,7 +403,7 @@ export default {
               {
                 name: "未来",
                 value: 847000,
-                symbolSize: 100,
+                symbolSize: 100/param,
                 draggable: true,
                 itemStyle: {
                   normal: {
@@ -716,5 +717,151 @@ export default {
       }
     }
   }
+}
+@media screen and (max-width: 500px) {
+  .home {
+  background: url("../assets/image/bg.jpg");
+  height: 100%;
+  background-size: 100% 100%;
+  color: #ffffff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .btn-style-user-details {
+    margin-top: 4.5rem;
+    background-color: #d24c63;
+    color: #ffffff;
+    border: none;
+  }
+  .item1 {
+    height: 100%;
+    display: block;
+    > div {
+      flex: 1;
+      .user-logo {
+        padding: 2%;
+        display: flex;
+        font-size: 1.3rem;
+        line-height: 50px;
+        .user-logo-img {
+          width: 50px;
+          height: 50px;
+          background: url("../assets/image/logo.png");
+          background-size: 100% 100%;
+          border-radius: 25px;
+          margin-right: 1rem;
+        }
+      }
+    }
+    .user-details {
+      font-size: 1.4rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 100%;
+      display: flex;
+      letter-spacing: 2px;
+      // justify-content: center; /* 相对父元素水平居中 */
+      align-items: center; /*  子元素相对父元素垂直居中 */
+      > div {
+        margin-left: 8%;
+        .hr {
+          width: 8%;
+          border-bottom: 2px solid #ffffff;
+          margin: 20px 0 40px 0;
+        }
+        .size-1 {
+          font-size: 2.4rem;
+          width: 80%;
+        }
+      }
+    }
+  }
+  .item2 {
+    display: block;
+    height: 70%;
+    > div {
+      flex: 1;
+    }
+    .item2-1 {
+     display: none;
+    }
+    #item2-2 {
+      width: 100%;
+      height: 100%;
+      background-color: #1b1c21;
+    }
+  }
+  .item3 {
+    display: flex;
+    height: 70%;
+    > div {
+      flex: 1;
+    }
+    #item3-1 {
+     display: none;
+    }
+    .item3-2 {
+      display: flex;
+      letter-spacing: 2px;
+      justify-content: center; /* 相对父元素水平居中 */
+      // align-items: center; /*  子元素相对父元素垂直居中 */
+      background-color: rgba(0, 0, 0, 0.6);
+      padding-top: 6rem;
+      > div {
+        width: 70%;
+        .title {
+          font-size: 3rem;
+        }
+        .details {
+          margin-top: 2rem;
+          font-size: 0.8rem;
+          color: #cccccc;
+          line-height: 1.6rem;
+        }
+      }
+    }
+  }
+  .item4 {
+    display: flex;
+    height: 70%;
+    > div {
+      flex: 1;
+    }
+    .item4-1 {
+      display: flex;
+      letter-spacing: 2px;
+      justify-content: center; /* 相对父元素水平居中 */
+      // align-items: center; /*  子元素相对父元素垂直居中 */
+      background-color: #1b1c21;
+      padding-top: 3rem;
+      height: 600px;
+      > div {
+        width: 70%;
+        .title {
+          font-size: 3rem;
+        }
+        .details {
+          margin-top: 2rem;
+          font-size: 1.5rem;
+          color: #cccccc;
+          line-height: 1.6rem;
+          .link {
+            color: #cccccc;
+            text-decoration: none;
+            cursor: pointer;
+          }
+        }
+      }
+      .text {
+        line-height: 30px;
+        font-size: 12px;
+      }
+    }
+    .item4-2 {
+      display: none;
+    }
+  }
+  .position-circle {
+   display: none
+  }
+}
 }
 </style>
