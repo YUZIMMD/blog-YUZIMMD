@@ -768,7 +768,7 @@ export default {
           margin: 20px 0 40px 0;
         }
         .size-1 {
-          font-size: 2.4rem;
+          font-size: 2rem;
           width: 80%;
         }
       }

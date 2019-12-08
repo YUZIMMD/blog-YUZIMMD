@@ -7,9 +7,13 @@
         <div class="left">
           <div class="logo"></div>
         </div>
-        <div class="right">WORK HARD,PLAY HARD</div>
+        <div class="right">
+          <div>WORK HARD,PLAY HARD</div>
+          <div>一个历经沧桑，备受生活折磨，却依然相信代码可以拯救世界的程序员</div>
+          <el-button class="btn-style-user-details" round @click="linkTo()">个人主页</el-button>
+        </div>
       </div>
-      <div class="item2">
+      <!-- <div class="item2">
         <div class="tabs">
           <div class="active">全部</div>
           <div>HTML</div>
@@ -19,7 +23,7 @@
           <div>打包构建工具</div>
           <div>其他</div>
         </div>
-      </div>
+      </div> -->
       <div class="item3">
         <div class="item" v-for="(item,index) in tableData" :key="index" @click="toDetails(item.id)">
           <div class="img"></div>
@@ -112,9 +116,19 @@ export default {
       }
       .right {
         flex: 0.8;
-        font-size: 3rem;
-        font-weight: bold;
-        line-height: 200px;
+        position: relative;
+        >:nth-child(1){
+          font-size: 3rem;
+          font-weight: bold;
+          line-height: 100px;
+        }
+        >:nth-child(2){
+          width: 80%;
+        }
+        .btn-style-user-details{
+          position: absolute;
+          bottom: 1rem;
+        }
       }
     }
     .item2 {
@@ -145,24 +159,26 @@ export default {
       margin-bottom: 5rem;
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
       .item {
-        margin-bottom: 1rem;
-        width: 28%;
+        margin-bottom: 2rem;
+        width: 31%;
         height: 400px;
-        background-color: #252525;
-        border: 20px solid #252525;
+        background-color: #333131;
         .img {
           background: #796363;
           width: 100%;
           height: 74%;
-          cursor: pointer;
+          cursor: pointer
         }
         .title {
+          padding: 0 0.5rem;
           font-size: 1.4rem;
           font-weight: bold;
           margin-top: 1.5rem;
         }
         .type {
+          padding: 0 0.5rem;
           margin-top: 0.8rem;
           font-size: 0.8rem;
           span {
@@ -172,6 +188,7 @@ export default {
           }
         }
         .footer-bar {
+          padding: 0 0.5rem;
           margin-top: 0.5rem;
           display: flex;
           > div {

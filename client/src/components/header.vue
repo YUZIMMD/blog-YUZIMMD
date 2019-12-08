@@ -1,7 +1,7 @@
 <template>
   <div class="head">
     <div class="user-name">Front-end developer-Dengyt</div>
-    <div class="menu">
+    <!-- <div class="menu">
       <el-menu
         :default-active="activeIndex"
         class="el-menu-demo"
@@ -12,7 +12,7 @@
         active-text-color="#d65268"
       >
         <el-menu-item index="1">处理中心</el-menu-item>
-        <!-- <el-submenu index="2">
+        <el-submenu index="2">
           <template slot="title">我的工作台</template>
           <el-menu-item index="2-1">选项1</el-menu-item>
           <el-menu-item index="2-2">选项2</el-menu-item>
@@ -23,10 +23,10 @@
             <el-menu-item index="2-4-2">选项2</el-menu-item>
             <el-menu-item index="2-4-3">选项3</el-menu-item>
           </el-submenu>
-        </el-submenu> -->
+        </el-submenu>
       </el-menu>
-    </div>
-    <div>
+    </div> -->
+    <div class="header-right">
       <button class="btn-style" @click="jump()">进入后台</button>
     </div>
   </div>
@@ -71,6 +71,7 @@ export default {
   display: flex;
   padding-top: 30px;
   .user-name {
+    flex: 1;
     font-size: 1.5rem;
     margin-right: 30px;
   }
@@ -110,14 +111,18 @@ export default {
       }
     }
   }
-  .btn-style {
-    border: 1px solid #d65268;
-    background-color: transparent;
-    color: #d65268;
-    padding: 3px 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
+  .header-right{
+    flex: 1;
+    .btn-style {
+      float: right;
+      border: 1px solid #d65268;
+      background-color: transparent;
+      color: #d65268;
+      padding: 3px 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
 }
 </style>
