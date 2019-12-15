@@ -16,6 +16,10 @@
                 <i class="iconfont iconzhuanxiangshenji2"></i>
                 <span slot="title">博客基本情况</span>
             </el-menu-item>
+            <el-menu-item :index="'/basic/recommend'">
+                <i class="el-icon-s-tools icon-EL"></i>
+                <span slot="title">主页管理</span>
+            </el-menu-item>
             <el-submenu index="2">
                 <template slot="title">
                     <i class="iconfont iconsyzhengwuxinxizhenghe"></i>
@@ -35,7 +39,7 @@
                 <span slot="title">服务器</span>
             </el-menu-item>
             <el-menu-item :index="'/basic/other'">
-                <i class="el-icon-star-on" style="position:relative;left:-5px;margin-right:0px;font-size:20px"></i>
+                <i class="el-icon-star-on icon-EL" style="font-size:20px"></i>
                 <span slot="title">其他</span>
             </el-menu-item>
             <el-submenu index="4">
@@ -106,7 +110,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 /* 在这里写css样式 */
 /* 新建完了这个页面要去添加路由，在src/router.js里面添加，添加方法在readme里面 */
 #aside{
@@ -116,6 +120,12 @@ export default {
     height: 100%;
     color: #ffffff;
     position: relative;
+    .icon-EL{
+      position:relative;
+      left:-5px;
+      margin-right:0px;
+      font-size:16px;
+    }
 }
 .el-submenu__title,.el-menu-item{
     text-align: left;

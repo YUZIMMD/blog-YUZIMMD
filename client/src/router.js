@@ -94,6 +94,12 @@ export default new Router({
           name: 'other',
           meta:'其他',
           component: () => import('./views/BackIndex/Other.vue')
+        },
+        {
+          path: 'recommend',
+          name: 'recommend',
+          meta:'其他',
+          component: () => import('./views/BackIndex/Recommend.vue')
         }
       ]
     }
