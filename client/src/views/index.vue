@@ -23,10 +23,15 @@
           <div>打包构建工具</div>
           <div>其他</div>
         </div>
-      </div> -->
+      </div>-->
       <div class="item3">
-        <div class="item" v-for="(item,index) in tableData" :key="index" @click="toDetails(item.id)">
-          <div class="img"></div>
+        <div
+          class="item"
+          v-for="(item,index) in tableData"
+          :key="index"
+          @click="toDetails(item.id)"
+        >
+          <div class="img" :style="'background-color:'+ color[index]"></div>
           <div class="title">{{item.title}}</div>
           <div class="type">
             <span>{{item.tags}}</span>
@@ -41,6 +46,12 @@
             <div class="time">{{item.updateTime}}</div>
           </div>
         </div>
+        <div
+          class="item more"
+          @click="toDetails()"
+        >
+          <el-button class="btn-style-user-details" round @click="linkTo()">知识清单>></el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -49,18 +60,22 @@
 <script>
 import Header from "../components/header";
 import dayjs from "dayjs";
+import { rgb } from '../util/common'
 
 export default {
   components: { Header },
   data() {
     return {
-        tableData:[]
+      tableData: [],
+      color:['#554183','#9470D4','#6F9CD0','rgb(93, 124, 210)','rgb(177, 179, 92)']
     };
   },
   methods: {
+    rgb,
     init() {
       this.$http("get", "/font/queryfontAction").then(data => {
-        this.tableData = data.fontlist.map(item => {
+        let dataS = data.fontlist.slice(0, 5);
+        this.tableData = dataS.map(item => {
           if (item.createTime) {
             item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
               "YYYY-MM-DD HH:mm:ss"
@@ -73,12 +88,12 @@ export default {
         });
       });
     },
-    toDetails(ID){
-        this.$router.push({path: '/details', query: {id: ID}})
+    toDetails(ID) {
+      this.$router.push({ path: "/details", query: { id: ID } });
     }
   },
-  mounted(){
-      this.init()
+  mounted() {
+    this.init();
   }
 };
 </script>
@@ -110,22 +125,22 @@ export default {
           font-weight: bold;
           line-height: 200px;
           text-align: center;
-          background: url('../assets/image/logo.png');
+          background: url("../assets/image/logo.png");
           background-size: 100% 100%;
         }
       }
       .right {
         flex: 0.8;
         position: relative;
-        >:nth-child(1){
+        > :nth-child(1) {
           font-size: 3rem;
           font-weight: bold;
           line-height: 100px;
         }
-        >:nth-child(2){
+        > :nth-child(2) {
           width: 80%;
         }
-        .btn-style-user-details{
+        .btn-style-user-details {
           position: absolute;
           bottom: 1rem;
         }
@@ -169,7 +184,7 @@ export default {
           background: #796363;
           width: 100%;
           height: 74%;
-          cursor: pointer
+          cursor: pointer;
         }
         .title {
           padding: 0 0.5rem;
@@ -201,6 +216,12 @@ export default {
             text-align: right;
           }
         }
+      }
+      .more{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2f2c2d;
       }
     }
   }
