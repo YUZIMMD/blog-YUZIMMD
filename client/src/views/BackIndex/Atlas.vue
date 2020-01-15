@@ -7,8 +7,9 @@
     <el-dialog title="清单树" :visible.sync="dialogFormVisible">
       <div class="treeBox">
         <el-tree
-          :data="data"
+          :data="treeData"
           node-key="id"
+          :props="defaultProps"
           default-expand-all
           @node-drag-start="handleDragStart"
           @node-drag-enter="handleDragEnter"
@@ -33,8 +34,16 @@
         >
       </div> -->
     </el-dialog>
-    <el-dialog :visible.sync="inputDialog">
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <el-dialog :visible.sync="inputDialog" width="600px">
+      <el-input v-model="input" placeholder="请输入添加name"></el-input>
+       <div slot="footer" class="dialog-footer">
+        <el-button @click="inputDialog = false" size="small"
+          >取 消</el-button
+        >
+        <el-button type="primary" @click="append()" size="small"
+          >确 定</el-button
+        >
+      </div>
     </el-dialog>
     <table border="1" cellspacing="0">
       <thead>
@@ -82,65 +91,31 @@ export default {
     return {
       dialogFormVisible: true,
       inputDialog: false,
-      input:'',
+      input: '',
       data: [
         {
-          id: 1,
-          label: '一级 1',
+          id: 0,
+          name: '一级 1',
+          fname:'213213',
+          fid:'111',
           children: [
             {
-              id: 4,
-              label: '二级 1-1',
+              id: 1,
+              label: '一级 1',
               children: [
                 {
-                  id: 9,
-                  label: '三级 1-1-1'
-                },
-                {
-                  id: 10,
-                  label: '三级 1-1-2'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 2,
-          label: '一级 2',
-          children: [
-            {
-              id: 5,
-              label: '二级 2-1'
-            },
-            {
-              id: 6,
-              label: '二级 2-2'
-            }
-          ]
-        },
-        {
-          id: 3,
-          label: '一级 3',
-          children: [
-            {
-              id: 7,
-              label: '二级 3-1'
-            },
-            {
-              id: 8,
-              label: '二级 3-2',
-              children: [
-                {
-                  id: 11,
-                  label: '三级 3-2-1'
-                },
-                {
-                  id: 12,
-                  label: '三级 3-2-2'
-                },
-                {
-                  id: 13,
-                  label: '三级 3-2-3'
+                  id: 4,
+                  label: '二级 1-1',
+                  children: [
+                    {
+                      id: 9,
+                      label: '三级 1-1-1'
+                    },
+                    {
+                      id: 10,
+                      label: '三级 1-1-2'
+                    }
+                  ]
                 }
               ]
             }
@@ -149,8 +124,10 @@ export default {
       ],
       defaultProps: {
         children: 'children',
-        label: 'label'
-      }
+        label: 'name'
+      },
+      treeData:[],
+      appendData:[]
     }
   },
   computed: {
@@ -158,22 +135,22 @@ export default {
   },
   methods: {
     handleDragStart(node, ev) {
-      console.log('drag start', node+ev)
+      console.log('drag start', node + ev)
     },
     handleDragEnter(draggingNode, dropNode, ev) {
-      console.log('tree drag enter: ', dropNode.label+ev)
+      console.log('tree drag enter: ', dropNode.label + ev)
     },
     handleDragLeave(draggingNode, dropNode, ev) {
-      console.log('tree drag leave: ', dropNode.label+ev)
+      console.log('tree drag leave: ', dropNode.label + ev)
     },
     handleDragOver(draggingNode, dropNode, ev) {
-      console.log('tree drag over: ', dropNode.label+ev)
+      console.log('tree drag over: ', dropNode.label + ev)
     },
     handleDragEnd(draggingNode, dropNode, dropType, ev) {
-      console.log('tree drag end: ', dropNode && dropNode.label, dropType+ev)
+      console.log('tree drag end: ', dropNode && dropNode.label, dropType + ev)
     },
     handleDrop(draggingNode, dropNode, dropType, ev) {
-      console.log('tree drop: ', dropNode.label, dropType+ev)
+      console.log('tree drop: ', dropNode.label, dropType + ev)
     },
     allowDrop(draggingNode, dropNode, type) {
       if (dropNode.data.label === '二级 3-1') {
@@ -194,7 +171,7 @@ export default {
             <el-button
               size="mini"
               type="text"
-              on-click={() => this.append(data)}
+              on-click={() => this.isinputDialog(data)}
             >
               添加一个子节点
             </el-button>
@@ -209,12 +186,18 @@ export default {
         </span>
       )
     },
-    append(data) {
-      const newChild = { id: id++, label: 'testtest', children: [] }
-      if (!data.children) {
-        this.$set(data, 'children', [])
+    isinputDialog(data){
+      this.inputDialog = !this.inputDialog
+      this.appendData = data
+    },
+    append() {
+      const newChild = { id: id++, name: this.input, children: [] }
+      if (!this.appendData.children) {
+        this.$set(this.appendData, 'children', [])
       }
-      data.children.push(newChild)
+      this.appendData.children.push(newChild)
+      this.input = ''
+      this.inputDialog = !this.inputDialog
     },
 
     remove(node, data) {
@@ -222,9 +205,33 @@ export default {
       const children = parent.data.children || parent.data
       const index = children.findIndex(d => d.id === data.id)
       children.splice(index, 1)
+    },
+    listToTree(oldArr) {
+      oldArr.forEach(element => {
+        let parentId = element.fid
+        if (parentId !== 0) {
+          oldArr.forEach(ele => {
+            if (ele.id == parentId) {
+              //当内层循环的ID== 外层循环的parendId时，（说明有children），需要往该内层id里建个children并push对应的数组；
+              if (!ele.children) {
+                ele.children = []
+              }
+              ele.children.push(element)
+            }
+          })
+        }
+      })
+      oldArr = oldArr.filter(ele => ele.fid === null) //这一步是过滤，按树展开，将多余的数组剔除；
+      this.treeData = oldArr
     }
   },
-  mounted() {}
+  mounted() {
+    this.$http('get', '/fontList/queryfontAction').then(res => {
+      let result = res.result
+      // 将数据封装成树
+      this.listToTree(result)
+    })
+  }
 }
 </script>
 <style lang="less" scoped>
