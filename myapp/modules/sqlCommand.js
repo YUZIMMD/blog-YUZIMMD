@@ -1,3 +1,4 @@
+// 示例
 var student_sql={
     insertOne:'insert into tb_student (student_id,name,subject,grade,sex) values (?,?,?,?,?)',
     deleteOne:'delete from tb_student where student_id = ?',
@@ -5,6 +6,7 @@ var student_sql={
     selectOne:'select * from tb_student where student_id = ?',
     selectAll:'select * from tb_student',
 }
+// 用户
 var user_sql = {
     insertOne:'insert into tb_user (name,passWord) values (?,?)',
     deleteOne:'delete from tb_user where id = ?',
@@ -13,6 +15,7 @@ var user_sql = {
     selectAll:'select * from tb_user',
     selectName:'select * from tb_user where name = ?'
 }
+// 前端
 var font_sql = {
     insertOne:'insert into tb_font (title,tags,kinds,content,createTime) values (?,?,?,?,?)',
     deleteOne:'delete from tb_font where id = ?',
@@ -21,6 +24,7 @@ var font_sql = {
     selectAll:'select * from tb_font',
     selectName:'select * from tb_font where name = ?'
 }
+// 后段
 var end_sql = {
     insertOne:'insert into tb_end (title,tags,kinds,content,createTime) values (?,?,?,?,?)',
     deleteOne:'delete from tb_end where id = ?',
@@ -29,6 +33,7 @@ var end_sql = {
     selectAll:'select * from tb_end',
     selectName:'select * from tb_end where name = ?'
 }
+// 服务器
 var server_sql = {
     insertOne:'insert into tb_server (title,tags,content,createTime) values (?,?,?,?)',
     deleteOne:'delete from tb_server where id = ?',
@@ -37,6 +42,7 @@ var server_sql = {
     selectAll:'select * from tb_server',
     selectName:'select * from tb_server where name = ?'
 }
+// 其他
 var other_sql = {
     insertOne:'insert into tb_other (title,tags,kinds,content,createTime) values (?,?,?,?,?)',
     deleteOne:'delete from tb_other where id = ?',
@@ -45,11 +51,19 @@ var other_sql = {
     selectAll:'select * from tb_other',
     selectName:'select * from tb_other where name = ?'
 }
+// 自检清单
+var font_list_sql = {
+    insertOne:'insert into tb_font_list (name,fid,fname) values (?,?,?)', // 插入一条
+    deleteOne:'delete from tb_font_list where id = ?', // 删除一条
+    selectAll:'select * from tb_font_list', // 查询全部
+    selectName:'select * from tb_font_list where name = ?' // 通过名字查询下面的一条
+}
 module.exports={
     student_sql,
     user_sql,
     font_sql,
     end_sql,
     server_sql,
-    other_sql
+    other_sql,
+    font_list_sql
 }
