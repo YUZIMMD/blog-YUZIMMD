@@ -1,3 +1,4 @@
+// 登录
 var userSql=require('../modules/sqlCommand').user_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');

@@ -16,10 +16,10 @@
                 <i class="iconfont iconzhuanxiangshenji2"></i>
                 <span slot="title">博客基本情况</span>
             </el-menu-item>
-            <el-menu-item :index="'/basic/recommend'">
+            <!-- <el-menu-item :index="'/basic/recommend'">
                 <i class="el-icon-s-tools icon-EL"></i>
                 <span slot="title">主页管理</span>
-            </el-menu-item>
+            </el-menu-item> -->
             <el-submenu index="2">
                 <template slot="title">
                     <i class="iconfont iconsyzhengwuxinxizhenghe"></i>

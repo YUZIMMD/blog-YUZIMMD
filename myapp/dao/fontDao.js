@@ -1,3 +1,4 @@
+// 前端
 var font_sql=require('../modules/sqlCommand').font_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');

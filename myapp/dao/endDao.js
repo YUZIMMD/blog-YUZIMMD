@@ -1,3 +1,4 @@
+// 后端
 var end_sql=require('../modules/sqlCommand').end_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');

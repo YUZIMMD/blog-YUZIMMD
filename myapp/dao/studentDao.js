@@ -1,3 +1,4 @@
+// 示例
 var studentSql=require('../modules/sqlCommand').student_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');

@@ -50,7 +50,7 @@
           class="item more"
           @click="toDetails()"
         >
-          <el-button class="btn-style-user-details" round @click="linkTo()">知识清单>></el-button>
+          <el-button class="btn-style-user-details" round @click="linkTo()">列表清单>></el-button>
         </div>
       </div>
     </div>

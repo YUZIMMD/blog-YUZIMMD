@@ -1,3 +1,4 @@
+// 其他
 var other_sql=require('../modules/sqlCommand').other_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');

@@ -1,3 +1,4 @@
+// 上传图片
 const fs = require("fs");
 const path = require("path");
 /* formidable用于解析表单数据，特别是文件上传 */

@@ -1,3 +1,4 @@
+// 服务器
 var server_sql=require('../modules/sqlCommand').server_sql;
 var mysql = require('mysql');
 var config = require('../modules/dbconfig');

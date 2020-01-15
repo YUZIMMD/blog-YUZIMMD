@@ -281,7 +281,7 @@ export default {
                 }
               },
               {
-                name: "吃饭",
+                name: "美食",
                 value: 43806,
                 symbolSize: 110/param,
                 draggable: true,
