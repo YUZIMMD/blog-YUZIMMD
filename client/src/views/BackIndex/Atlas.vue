@@ -36,10 +36,8 @@
     </el-dialog>
     <el-dialog :visible.sync="inputDialog" width="600px">
       <el-input v-model="input" placeholder="请输入添加name"></el-input>
-       <div slot="footer" class="dialog-footer">
-        <el-button @click="inputDialog = false" size="small"
-          >取 消</el-button
-        >
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="inputDialog = false" size="small">取 消</el-button>
         <el-button type="primary" @click="append()" size="small"
           >确 定</el-button
         >
@@ -96,8 +94,8 @@ export default {
         {
           id: 0,
           name: '一级 1',
-          fname:'213213',
-          fid:'111',
+          fname: '213213',
+          fid: '111',
           children: [
             {
               id: 1,
@@ -126,8 +124,8 @@ export default {
         children: 'children',
         label: 'name'
       },
-      treeData:[],
-      appendData:[]
+      treeData: [],
+      appendData: []
     }
   },
   computed: {
@@ -186,18 +184,25 @@ export default {
         </span>
       )
     },
-    isinputDialog(data){
+    isinputDialog(data) {
       this.inputDialog = !this.inputDialog
       this.appendData = data
     },
     append() {
+      // 前端实现效果，再往数据库中添加（优化:不需要树型化数据）
       const newChild = { id: id++, name: this.input, children: [] }
-      if (!this.appendData.children) {
-        this.$set(this.appendData, 'children', [])
-      }
-      this.appendData.children.push(newChild)
-      this.input = ''
-      this.inputDialog = !this.inputDialog
+      this.$http('post', '/fontList/addfontAction', {
+        name: this.input,
+        fid: this.appendData.id,
+        fname: this.appendData.fname
+      }).then(res => {
+        if (!this.appendData.children) {
+          this.$set(this.appendData, 'children', [])
+        }
+        this.appendData.children.push(newChild)
+        this.input = ''
+        this.inputDialog = !this.inputDialog
+      })
     },
 
     remove(node, data) {
