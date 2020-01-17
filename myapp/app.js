@@ -18,6 +18,7 @@ var serverRouter = require('./routes/servercontroller');
 var otherRouter = require('./routes/othercontroller');
 var uploadImgRouter = require('./routes/uploadImgcontroller');
 var fontListRouter = require('./routes/fontListController');
+var progressRouter = require('./routes/progressController');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use('/api/server',serverRouter);
 app.use('/api/other',otherRouter);
 app.use('/api/uploadImg',uploadImgRouter);
 app.use('/api/fontList',fontListRouter);
+app.use('/api/progress',progressRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

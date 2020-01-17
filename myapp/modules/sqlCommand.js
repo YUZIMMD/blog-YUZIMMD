@@ -58,6 +58,11 @@ var font_list_sql = {
     selectAll:'select * from tb_font_list', // 查询全部
     selectName:'select * from tb_font_list where name = ?' // 通过名字查询下面的一条
 }
+// 进度报表
+var progress_sql = {
+    insertOne:'insert into tb_progress (name,content,createTime) values (?,?,?)', // 插入一条
+    selectAll:'select * from tb_progress' // 查询全部
+}
 module.exports={
     student_sql,
     user_sql,
@@ -65,5 +70,6 @@ module.exports={
     end_sql,
     server_sql,
     other_sql,
-    font_list_sql
+    font_list_sql,
+    progress_sql
 }
