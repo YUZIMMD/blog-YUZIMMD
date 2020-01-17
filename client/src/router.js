@@ -38,9 +38,9 @@ export default new Router({
       component: () => import('./views/FrontEndMap.vue')
     },
     {
-      path: '/details',
-      name: 'details',
-      component: () => import('./views/Details.vue')
+      path: '/fontList',
+      name: 'fontList',
+      component: () => import('./views/FontList.vue')
     },
     {
       path: '/basic',

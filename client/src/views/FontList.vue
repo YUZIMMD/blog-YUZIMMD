@@ -2,9 +2,7 @@
 <template>
   <div class="index">
     <div class="content">
-      <div class="title">{{detalis.title}}</div>
-      <div class="tags">标签：{{detalis.tags}}</div>
-      <div v-html="detalis.content"></div>
+     21312321
     </div>
   </div>
 </template>
@@ -12,6 +10,7 @@
 <script>
 
 export default {
+  name:'fontList',
   data() {
     return {
       detalis: {}
@@ -19,12 +18,7 @@ export default {
   },
   methods: {
     init() {
-      this.$http(
-        "get",
-        "/font/queryfontOneAction?id=" + this.$route.query.id
-      ).then(data => {
-        this.detalis = data.info;
-      });
+      
     }
   },
   mounted() {

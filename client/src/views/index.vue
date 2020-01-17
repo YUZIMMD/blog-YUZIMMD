@@ -29,10 +29,31 @@
           class="item"
           @click="toDetails()"
         >
-          <div class="img" :style="'background-color:'+ color[1]"></div>
+          <!-- <div class="img" style="background:url('../assets/image/font.png')"></div> -->
+          <img src="../assets/image/font.png" class="img" />
           <div class="title">前端清单列表</div>
           <div class="type">
             <span>前端知识清单，学习引导图</span>
+          </div>
+          <div class="footer-bar">
+            <div>
+              <i class="el-icon-view"></i>
+              <span>213123</span>
+              <i class="el-icon-star-off" style="margin-left:1rem"></i>
+              <span>122</span>
+            </div>
+            <div class="time">最近更新于：2020-01-02</div>
+          </div>
+        </div>
+        <div
+          class="item"
+          @click="toDetails()"
+        >
+          <!-- <div class="img" :style="'background-color:'+ color[1]"></div> -->
+          <img src="../assets/image/end.png" class="img" />
+          <div class="title">后端清单列表</div>
+          <div class="type">
+            <span>一些前端的后台知识</span>
           </div>
           <div class="footer-bar">
             <div>
@@ -84,8 +105,8 @@ export default {
       //   });
       // });
     },
-    toDetails(ID) {
-      this.$router.push({ path: "/details", query: { id: ID } });
+    toDetails() {
+      this.$router.push({ path: "/fontList"});
     }
   },
   mounted() {
@@ -181,7 +202,7 @@ export default {
           width: 100%;
           height: 74%;
           cursor: pointer;
-          background:url('../assets/image/font.png');
+          // background:url('../assets/image/font.png');
           background-size: 100% 100%;
         }
         .title {
