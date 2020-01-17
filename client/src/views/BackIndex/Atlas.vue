@@ -196,6 +196,7 @@ export default {
         fid: this.appendData.id,
         fname: this.appendData.fname
       }).then(res => {
+        console.log(res)
         if (!this.appendData.children) {
           this.$set(this.appendData, 'children', [])
         }
@@ -242,22 +243,6 @@ export default {
 <style lang="less" scoped>
 .atlas {
   width: 100%;
-  .manageList {
-    position: fixed;
-    z-index: 100;
-    width: 60px;
-    height: 60px;
-    background-color: #080074;
-    border-radius: 40px;
-    box-shadow: 0px 0 10px 0 #00ff00;
-    right: 1%;
-    top: 50%;
-    color: #fff;
-    line-height: 60px;
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-  }
   .treeBox {
     /deep/ .custom-tree-node {
       flex: 1;

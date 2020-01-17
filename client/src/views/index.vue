@@ -27,23 +27,21 @@
       <div class="item3">
         <div
           class="item"
-          v-for="(item,index) in tableData"
-          :key="index"
-          @click="toDetails(item.id)"
+          @click="toDetails()"
         >
-          <div class="img" :style="'background-color:'+ color[index]"></div>
-          <div class="title">{{item.title}}</div>
+          <div class="img" :style="'background-color:'+ color[1]"></div>
+          <div class="title">前端清单列表</div>
           <div class="type">
-            <span>{{item.tags}}</span>
+            <span>前端知识清单，学习引导图</span>
           </div>
           <div class="footer-bar">
             <div>
               <i class="el-icon-view"></i>
-              <span>232</span>
+              <span>213123</span>
               <i class="el-icon-star-off" style="margin-left:1rem"></i>
               <span>122</span>
             </div>
-            <div class="time">{{item.updateTime}}</div>
+            <div class="time">最近更新于：2020-01-02</div>
           </div>
         </div>
         <div
@@ -59,34 +57,32 @@
 
 <script>
 import Header from "../components/header";
-import dayjs from "dayjs";
 import { rgb } from '../util/common'
 
 export default {
   components: { Header },
   data() {
     return {
-      tableData: [],
       color:['#554183','#9470D4','#6F9CD0','rgb(93, 124, 210)','rgb(177, 179, 92)']
     };
   },
   methods: {
     rgb,
     init() {
-      this.$http("get", "/font/queryfontAction").then(data => {
-        let dataS = data.fontlist.slice(0, 5);
-        this.tableData = dataS.map(item => {
-          if (item.createTime) {
-            item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
-              "YYYY-MM-DD HH:mm:ss"
-            );
-            item.updateTime = dayjs(dayjs(item.updateTime).valueOf()).format(
-              "YYYY-MM-DD HH:mm:ss"
-            );
-          }
-          return item;
-        });
-      });
+      // this.$http("get", "/font/queryfontAction").then(data => {
+      //   let dataS = data.fontlist.slice(0, 5);
+      //   this.tableData = dataS.map(item => {
+      //     if (item.createTime) {
+      //       item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
+      //         "YYYY-MM-DD HH:mm:ss"
+      //       );
+      //       item.updateTime = dayjs(dayjs(item.updateTime).valueOf()).format(
+      //         "YYYY-MM-DD HH:mm:ss"
+      //       );
+      //     }
+      //     return item;
+      //   });
+      // });
     },
     toDetails(ID) {
       this.$router.push({ path: "/details", query: { id: ID } });
@@ -176,15 +172,17 @@ export default {
       flex-wrap: wrap;
       justify-content: space-between;
       .item {
+        padding-bottom: 10px;
         margin-bottom: 2rem;
         width: 31%;
         height: 400px;
         background-color: #333131;
         .img {
-          background: #796363;
           width: 100%;
           height: 74%;
           cursor: pointer;
+          background:url('../assets/image/font.png');
+          background-size: 100% 100%;
         }
         .title {
           padding: 0 0.5rem;
@@ -214,6 +212,10 @@ export default {
           }
           .time {
             text-align: right;
+            color: #ccc;
+            font-size: 12px;
+            position: relative;
+            top: 6px; 
           }
         }
       }
