@@ -52,11 +52,27 @@ db.doReturn(res,result);
 function queryAllFontList(req,res,callback){
   var result={};
     db.query(font_list_sql.selectAll,function(err,rows){
-        if(!err){            
+        if(!err){    
+            let oldArr = rows.concat([])
+            oldArr.forEach(element => {
+                let parentId = element.fid
+                if (parentId !== 0) {
+                  oldArr.forEach(ele => {
+                    if (ele.id == parentId) {
+                      //当内层循环的ID== 外层循环的parendId时，（说明有children），需要往该内层id里建个children并push对应的数组；
+                      if (!ele.children) {
+                        ele.children = []
+                      }
+                      ele.children.push(element)
+                    }
+                  })
+                }
+              })
+              oldArr = oldArr.filter(ele => ele.fid === null)        
             result={
                 code:200,
                 msg:'success',
-                result:rows,
+                result:oldArr,
             }
          
         }else{
