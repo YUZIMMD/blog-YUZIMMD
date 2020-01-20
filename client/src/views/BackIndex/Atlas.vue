@@ -53,23 +53,23 @@
           <th style="width:20%">计划</th>
         </tr>
       </thead>
-      <tbody v-for="(item, index) in mapDataObj['知识体系']" :key="index">
+      <tbody v-for="(item, index) in treeData[0].children" :key="index">
         <tr>
-          <td :rowspan="Object.keys(item).length" style="width:200px">
-            {{ index }}
+          <td :rowspan="item.children>0 ?item.children.length:0" style="width:200px">
+            {{ item.name }}
           </td>
-          <td>{{ Object.keys(item)[0] }}</td>
+          <td>{{item.children?item.children[0].name:''}}</td>
           <td></td>
           <td></td>
           <td></td>
           <td></td>
         </tr>
         <tr
-          v-for="(item1, index1) in item"
+          v-for="(item1, index1) in item.children"
           :key="index1"
-          v-show="index1 != Object.keys(item)[0]"
+          v-show="index1 != 0"
         >
-          <td>{{ index1 }}</td>
+          <td>{{ item1.name }}</td>
           <td></td>
           <td></td>
           <td></td>
@@ -87,7 +87,7 @@ export default {
   name: 'Atlas',
   data() {
     return {
-      dialogFormVisible: true,
+      dialogFormVisible: false,
       inputDialog: false,
       input: '',
       data: [
@@ -187,6 +187,7 @@ export default {
     isinputDialog(data) {
       this.inputDialog = !this.inputDialog
       this.appendData = data
+      alert(JSON.stringify(data))
     },
     append() {
       // 前端实现效果，再往数据库中添加（优化:不需要树型化数据）
@@ -194,7 +195,7 @@ export default {
       this.$http('post', '/fontList/addfontAction', {
         name: this.input,
         fid: this.appendData.id,
-        fname: this.appendData.fname
+        fname: this.appendData.name
       }).then(res => {
         console.log(res)
         if (!this.appendData.children) {
@@ -203,6 +204,11 @@ export default {
         this.appendData.children.push(newChild)
         this.input = ''
         this.inputDialog = !this.inputDialog
+        this.$http('get', '/fontList/queryfontAction').then(res => {
+          let result = res.result
+          // 将数据封装成树
+          this.listToTree(result)
+        })
       })
     },
 
@@ -211,31 +217,11 @@ export default {
       const children = parent.data.children || parent.data
       const index = children.findIndex(d => d.id === data.id)
       children.splice(index, 1)
-    },
-    listToTree(oldArr) {
-      oldArr.forEach(element => {
-        let parentId = element.fid
-        if (parentId !== 0) {
-          oldArr.forEach(ele => {
-            if (ele.id == parentId) {
-              //当内层循环的ID== 外层循环的parendId时，（说明有children），需要往该内层id里建个children并push对应的数组；
-              if (!ele.children) {
-                ele.children = []
-              }
-              ele.children.push(element)
-            }
-          })
-        }
-      })
-      oldArr = oldArr.filter(ele => ele.fid === null) //这一步是过滤，按树展开，将多余的数组剔除；
-      this.treeData = oldArr
     }
   },
   mounted() {
     this.$http('get', '/fontList/queryfontAction').then(res => {
-      let result = res.result
-      // 将数据封装成树
-      this.listToTree(result)
+      this.treeData = res.result
     })
   }
 }

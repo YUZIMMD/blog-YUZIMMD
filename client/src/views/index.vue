@@ -9,8 +9,12 @@
         </div>
         <div class="right">
           <div>WORK HARD,PLAY HARD</div>
-          <div>一个历经沧桑，备受生活折磨，却依然相信代码可以拯救世界的程序员</div>
-          <el-button class="btn-style-user-details" round @click="linkTo()">个人主页</el-button>
+          <div>
+            一个历经沧桑，备受生活折磨，却依然相信代码可以拯救世界的程序员
+          </div>
+          <el-button class="btn-style-user-details" round @click="linkTo()"
+            >个人主页</el-button
+          >
         </div>
       </div>
       <!-- <div class="item2">
@@ -25,10 +29,7 @@
         </div>
       </div>-->
       <div class="item3">
-        <div
-          class="item"
-          @click="toDetails()"
-        >
+        <div class="item" @click="toDetails()">
           <!-- <div class="img" style="background:url('../assets/image/font.png')"></div> -->
           <img src="../assets/image/font.png" class="img" />
           <div class="title">前端清单列表</div>
@@ -45,10 +46,7 @@
             <div class="time">最近更新于：2020-01-02</div>
           </div>
         </div>
-        <div
-          class="item"
-          @click="toDetails()"
-        >
+        <div class="item" @click="toDetails()">
           <!-- <div class="img" :style="'background-color:'+ color[1]"></div> -->
           <img src="../assets/image/end.png" class="img" />
           <div class="title">后端清单列表</div>
@@ -65,11 +63,10 @@
             <div class="time">最近更新于：2020-01-02</div>
           </div>
         </div>
-        <div
-          class="item more"
-          @click="toDetails()"
-        >
-          <el-button class="btn-style-user-details" round @click="linkTo()">列表清单>></el-button>
+        <div class="item more" @click="toDetails()">
+          <el-button class="btn-style-user-details" round @click="linkTo()"
+            >列表清单>></el-button
+          >
         </div>
       </div>
     </div>
@@ -77,42 +74,29 @@
 </template>
 
 <script>
-import Header from "../components/header";
+import Header from '../components/header'
 import { rgb } from '../util/common'
 
 export default {
   components: { Header },
   data() {
     return {
-      color:['#554183','#9470D4','#6F9CD0','rgb(93, 124, 210)','rgb(177, 179, 92)']
-    };
+      color: [
+        '#554183',
+        '#9470D4',
+        '#6F9CD0',
+        'rgb(93, 124, 210)',
+        'rgb(177, 179, 92)'
+      ]
+    }
   },
   methods: {
     rgb,
-    init() {
-      // this.$http("get", "/font/queryfontAction").then(data => {
-      //   let dataS = data.fontlist.slice(0, 5);
-      //   this.tableData = dataS.map(item => {
-      //     if (item.createTime) {
-      //       item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
-      //         "YYYY-MM-DD HH:mm:ss"
-      //       );
-      //       item.updateTime = dayjs(dayjs(item.updateTime).valueOf()).format(
-      //         "YYYY-MM-DD HH:mm:ss"
-      //       );
-      //     }
-      //     return item;
-      //   });
-      // });
-    },
     toDetails() {
-      this.$router.push({ path: "/fontList"});
+      this.$router.push({ path: '/fontList' })
     }
-  },
-  mounted() {
-    this.init();
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -142,7 +126,7 @@ export default {
           font-weight: bold;
           line-height: 200px;
           text-align: center;
-          background: url("../assets/image/logo.png");
+          background: url('../assets/image/logo.png');
           background-size: 100% 100%;
         }
       }
@@ -236,11 +220,11 @@ export default {
             color: #ccc;
             font-size: 12px;
             position: relative;
-            top: 6px; 
+            top: 6px;
           }
         }
       }
-      .more{
+      .more {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -248,5 +232,5 @@ export default {
       }
     }
   }
-}
-</style>>
+}</style
+>>

@@ -1,4 +1,4 @@
-/** 前端 */ 
+/** 前端 */
 <template>
   <div class="font">
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
@@ -7,39 +7,64 @@
           type="primary"
           class="addBtn"
           size="small"
-          @click="dialogFormVisible = true,title = '新增文章'"
-        >新 增</el-button>
+          @click=";(dialogFormVisible = true), (title = '新增文章')"
+          >新 增</el-button
+        >
       </el-form-item>
       <el-form-item>
-        <el-select class="selectBox" v-model="form.kinds" placeholder="请选择所属大类" size="small">
-          <el-option v-for="(item, index) in options" :key="index" :label="item" :value="index"></el-option>
+        <el-select
+          class="selectBox"
+          v-model="form.kinds"
+          placeholder="请选择所属大类"
+          size="small"
+        >
+         
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input class="searchBox" v-model="input" placeholder="请输入关键字" size="small"></el-input>
-        <el-button type="primary" class="searchBtn" size="small">搜 索</el-button>
+        <el-input
+          class="searchBox"
+          v-model="input"
+          placeholder="请输入关键字"
+          size="small"
+        ></el-input>
+        <el-button type="primary" class="searchBtn" size="small"
+          >搜 索</el-button
+        >
       </el-form-item>
     </el-form>
     <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="标题" :label-width="formLabelWidth">
-          <el-input v-model="form.title" auto-complete="off" size="small"></el-input>
+          <el-input
+            v-model="form.title"
+            auto-complete="off"
+            size="small"
+          ></el-input>
         </el-form-item>
         <el-form-item label="所属分类" :label-width="formLabelWidth">
-          <el-select v-model="form.kinds" placeholder="请选择" size="small">
-            <el-option v-for="(item, index) in options" :key="index" :label="item" :value="index"></el-option>
-          </el-select>
+            <el-cascader v-model="form.kinds" :options="treeData" :props="{ label: 'name',value:'id' }"></el-cascader>
         </el-form-item>
         <el-form-item label="文章标签" :label-width="formLabelWidth">
-          <el-input v-model="form.tags" auto-complete="off" size="small"></el-input>
+          <el-input
+            v-model="form.tags"
+            auto-complete="off"
+            size="small"
+          ></el-input>
         </el-form-item>
         <el-form-item label="文章内容" :label-width="formLabelWidth">
-          <quill-editor v-model="form.content" :options="editorOption" ref="QuillEditor"></quill-editor>
+          <div id="main">
+            <mavon-editor v-model="form.content" />
+          </div>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" size="small">取 消</el-button>
-        <el-button type="primary" @click="submitFun" size="small">确 定</el-button>
+        <el-button @click="dialogFormVisible = false" size="small"
+          >取 消</el-button
+        >
+        <el-button type="primary" @click="submitFun" size="small"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
     <div class="study-plan">
@@ -53,17 +78,25 @@
             <el-tag
               type="success"
               class="m-r-sm"
-              v-for="(item,index) in scope.row.tags.split('，')"
+              v-for="(item, index) in scope.row.tags.split('，')"
               :key="index"
-            >{{item}}</el-tag>
+              >{{ item }}</el-tag
+            >
           </template>
         </el-table-column>
         <el-table-column prop="createTime" label="上传时间"></el-table-column>
-        <el-table-column prop="updateTime" label="最近修改时间"></el-table-column>
+        <el-table-column
+          prop="updateTime"
+          label="最近修改时间"
+        ></el-table-column>
         <el-table-column label="操作" width="100">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="updateUser(scope.row)">编辑</el-button>
-            <el-button type="text" size="small" @click="deleteUser(scope.row)">删除</el-button>
+            <el-button type="text" size="small" @click="updateUser(scope.row)"
+              >编辑</el-button
+            >
+            <el-button type="text" size="small" @click="deleteUser(scope.row)"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -72,48 +105,48 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 export default {
-  name: "Font",
+  name: 'Font',
   data() {
     return {
-      input:'',
+      input: '',
       tableData: [],
       formInline: {
-        user: "",
-        region: ""
+        user: '',
+        region: ''
       },
       dialogFormVisible: false,
       form: {
-        title: "",
-        kinds: "",
-        tags: "",
-        content: ""
+        title: '',
+        kinds: '',
+        tags: '',
+        content: ''
       },
-      options: ["前端规范", "html", "css", "JavaScript", "框架", "工具"],
-      formLabelWidth: "120px",
-      title: "新增文章",
+      options: ['前端规范', 'html', 'css', 'JavaScript', '框架', '工具'],
+      formLabelWidth: '120px',
+      title: '新增文章',
       editorOption: {
         modules: {
           toolbar: {
             container: [
-              ["bold", "italic", "underline", "strike"], // toggled buttons
-              ["blockquote", "code-block"],
+              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+              ['blockquote', 'code-block'],
 
               [{ header: 1 }, { header: 2 }], // custom button values
-              [{ list: "ordered" }, { list: "bullet" }],
-              [{ script: "sub" }, { script: "super" }], // superscript/subscript
-              [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-              [{ direction: "rtl" }], // text direction
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+              [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+              [{ direction: 'rtl' }], // text direction
 
-              [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+              [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
               [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
               [{ color: [] }, { background: [] }], // dropdown with defaults from theme
               [{ font: [] }],
               [{ align: [] }],
-              ["link", "image", "video"],
-              ["clean"] // remove formatting button
+              ['link', 'image', 'video'],
+              ['clean'] // remove formatting button
             ] // 工具栏
             // handlers: {
             //     'image': function (value) {
@@ -126,56 +159,63 @@ export default {
             // }
           }
         }
-      }
-    };
+      },
+      treeData:[]
+    }
   },
   methods: {
     submitFun() {
+      this.form.kinds = this.form.kinds.join(',')
       let url =
-        this.title == "新增文章"
-          ? "/font/addfontAction"
-          : "/font/updatefontAction";
-      this.$http("post", url, this.form).then(data => {
+        this.title == '新增文章'
+          ? '/font/addfontAction'
+          : '/font/updatefontAction'
+      this.$http('post', url, this.form).then(data => {
         if (data.code == 200) {
-          this.dialogFormVisible = false;
-          this.init();
+          this.dialogFormVisible = false
+          this.init()
         }
-      });
+      })
     },
     init() {
-      this.$http("get", "/font/queryfontAction").then(data => {
+      this.$http('get', '/font/queryfontAction').then(data => {
         this.tableData = data.fontlist.map(item => {
           if (item.createTime) {
             item.createTime = dayjs(dayjs(item.createTime).valueOf()).format(
-              "YYYY-MM-DD HH:mm:ss"
-            );
+              'YYYY-MM-DD HH:mm:ss'
+            )
             item.updateTime = dayjs(dayjs(item.updateTime).valueOf()).format(
-              "YYYY-MM-DD HH:mm:ss"
-            );
+              'YYYY-MM-DD HH:mm:ss'
+            )
           }
-          return item;
-        });
-      });
+          return item
+        })
+      })
     },
     updateUser(row) {
-      this.form = row;
-      this.title = "修改用户";
-      this.dialogFormVisible = true;
-      console.log(row);
+      this.form = row
+      this.title = '修改用户'
+      this.dialogFormVisible = true
+      console.log(row)
     },
     deleteUser(row) {
-      this.$http("get", "/font/deletefontAction?id=" + row.id).then(data => {
+      this.$http('get', '/font/deletefontAction?id=' + row.id).then(data => {
         if (data.code == 200) {
-          this.init();
+          this.init()
         }
-      });
+      })
+    },
+    getTreeData() {
+      this.$http('get', '/fontList/queryfontAction').then(res => {
+        this.treeData = res.result[0].children
+      })
     }
   },
   mounted() {
-    this.init();
-    console.log(dayjs);
+    this.init()
+    this.getTreeData()
+    console.log(dayjs)
   }
-};
+}
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

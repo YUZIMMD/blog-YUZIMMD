@@ -1,52 +1,124 @@
-/** 首页 */
+/** 页面模版 */
 <template>
-  <div class="index">
-    <div class="content">
-     21312321
+  <div id="basic">
+    <!-- 头部 -->
+    <div class="list-head">
+      <div class="title">前端知识清单列表</div>
+    </div>
+    <div class="flexBox">
+      <!-- 侧边栏 -->
+      <el-menu
+        default-active="57"
+        class="list-menu"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <template v-for="(item, index) in treeData">
+          <el-submenu
+            :index="item.id + ''"
+            :key="index"
+            v-if="item.children"
+          >
+            <template slot="title">
+              <span>{{ item.name }}</span>
+            </template>
+            <el-menu-item
+              :index="item1.id + ''"
+              v-for="(item1, index1) in item.children"
+              :key="index1"
+              >{{ item1.name }}</el-menu-item
+            >
+          </el-submenu>
+          <el-menu-item index="2" v-else :key="index">
+            <span slot="title">{{ item.name }}</span>
+          </el-menu-item>
+        </template>
+      </el-menu>
+      <!-- 主体内容 -->
+      <div class="flexItem">
+        <div class="mainBox"></div>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
-
 export default {
-  name:'fontList',
   data() {
     return {
-      detalis: {}
-    };
+      treeData: []
+    }
   },
   methods: {
-    init() {
-      
+    handleClose() {},
+    handleOpen() {},
+    getSide() {
+      this.$http('get', '/fontList/queryfontAction').then(res => {
+        this.treeData = res.result[0].children
+      })
     }
   },
+  created() {},
   mounted() {
-    this.init();
+    this.getSide()
   }
-};
+}
 </script>
 
-<style lang="less" scoped>
-.index {
-  background-color: #f9f3f3;
-  overflow-x: hidden;
-//   color: #ffffff;
-  min-height: 100%;
-  .content {
-    width: 80%;
-    margin: 0 auto;
-    max-width: 1400px;
-    min-width: 1000px;
+<style lang="less">
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fff;
+}
+#basic {
+  height: 100%;
+  .list-head {
+    height: 49px;
+    border-bottom: 1px solid #e6e6e6;
     .title {
-      text-align: center;
-      font-size: 24px;
-      margin-top: 50px;
+      width: 200px;
+      line-height: 49px;
+      font-size: 18px;
+      padding-left: 20px;
+      font-weight: bold;
     }
-    .tags{
-        text-align: center;
-        margin: 10px;
+  }
+  .flexBox {
+    display: flex;
+    height: calc(100% - 50px);
+    .list-menu {
+      width: 200px;
+      padding-left: 10px;
+      background-color: transparent;
+      .is-active .el-submenu__title span,
+      .el-menu-item.is-active {
+        color: #d24c63;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .el-menu-item.is-active {
+        font-size: 14px;
+      }
+      .el-menu-item:focus,
+      .el-menu-item:hover {
+        background-color: transparent;
+      }
+    }
+    .flexItem {
+      flex: 1;
+      overflow-y: scroll;
+      .mainBox {
+        max-width: 740px;
+        margin: 0 auto;
+        padding: 2rem 2.5rem;
+      }
     }
   }
 }
-</style>>
+</style>
