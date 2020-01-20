@@ -26,7 +26,7 @@
         >
       </el-form-item>
     </el-form>
-    <el-dialog :title="title" width="800px" :visible.sync="dialogFormVisible">
+    <el-dialog :title="title" width="80%" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="标题" :label-width="formLabelWidth">
           <el-input
