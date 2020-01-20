@@ -28,6 +28,12 @@ router.get('/queryfontOneAction',function(req,res,next){
     fontDao.queryOneFont(req,res,function(result){
         res.json(result);
     });
-});   
+});  
+
+router.get('/queryOneFontByKindsAction',function(req,res,next){
+    fontDao.queryOneFontByKinds(req,res,function(result){
+        res.json(result);
+    });
+});  
 
 module.exports = router;

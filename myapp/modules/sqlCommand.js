@@ -22,7 +22,7 @@ var font_sql = {
     updateOne:'update tb_font set title = ?,tags = ?,kinds = ?,content = ?,updateTime = ? where id = ?',
     selectOne:'select * from tb_font where id = ?',
     selectAll:'select * from tb_font',
-    selectName:'select * from tb_font where name = ?'
+    selectKindsName:'select * from tb_font where kinds = ?'
 }
 // 后段
 var end_sql = {

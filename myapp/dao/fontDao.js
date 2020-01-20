@@ -128,11 +128,32 @@ function queryOneFont(req,res,callback){
         callback(result);
     });
 }
-
+/**
+ * 通过kinds查询数据
+*/
+function queryOneFontByKinds(req,res,callback){
+    var param = req.query;
+    var result={};
+    db.queryArgs(font_sql.selectKindsName,param.kinds,function(err,rows){
+        if(!err){
+            result={
+                code:200,
+                info:rows.length>0?rows[0]:[]
+            }
+        }else{
+            result={
+                code:201,
+                msg:'err:'+err
+            }
+        }
+        callback(result);
+    });
+}
 module.exports={
     addFontAction:addFontAction,
     deleteFont:deleteFont,
     queryAllFont:queryAllFont,
     updateFont:updateFont,
-    queryOneFont:queryOneFont
+    queryOneFont:queryOneFont,
+    queryOneFontByKinds:queryOneFontByKinds
 }
