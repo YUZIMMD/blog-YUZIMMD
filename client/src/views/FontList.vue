@@ -38,7 +38,17 @@
       </el-menu>
       <!-- 主体内容 -->
       <div class="flexItem">
-        <div class="mainBox" v-html="details.content"></div>
+        <div class="mainBox">
+          <mavon-editor
+            :value="details.content"
+            :subfield="false"
+            :defaultOpen="'preview'"
+            :toolbarsFlag="false"
+            :editable="false"
+            :scrollStyle="true"
+            :ishljs="true"
+          ></mavon-editor>
+        </div>
       </div>
     </div>
   </div>
@@ -110,6 +120,9 @@ body {
     display: flex;
     height: calc(100% - 50px);
     .list-menu {
+      height: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
       width: 200px;
       padding-left: 10px;
       background-color: transparent;
@@ -131,7 +144,7 @@ body {
       flex: 1;
       overflow-y: scroll;
       .mainBox {
-        max-width: 740px;
+        max-width: 840px;
         margin: 0 auto;
         padding: 2rem 2.5rem;
       }
