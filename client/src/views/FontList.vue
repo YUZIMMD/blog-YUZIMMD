@@ -1,4 +1,4 @@
-/** 页面模版 */
+/** 前端知识清单列表 */
 <template>
   <div id="basic">
     <!-- 头部 -->
@@ -14,11 +14,7 @@
         @close="handleClose"
       >
         <template v-for="(item, index) in treeData">
-          <el-submenu
-            :index="item.id + ''"
-            :key="index"
-            v-if="item.children"
-          >
+          <el-submenu :index="item.id + ''" :key="index" v-if="item.children">
             <template slot="title">
               <span>{{ item.name }}</span>
             </template>
@@ -26,26 +22,34 @@
               :index="item1.id + ''"
               v-for="(item1, index1) in item.children"
               :key="index1"
+              @click="clickMenu(item.name, item1.name)"
               >{{ item1.name }}</el-menu-item
             >
           </el-submenu>
-          <el-menu-item index="2" v-else :key="index">
+          <el-menu-item
+            index="2"
+            v-else
+            :key="index"
+            @click="clickMenu(item.name)"
+          >
             <span slot="title">{{ item.name }}</span>
           </el-menu-item>
         </template>
       </el-menu>
       <!-- 主体内容 -->
       <div class="flexItem">
-        <div class="mainBox"></div>
+        <div class="mainBox" v-html="details.content"></div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import marked from 'marked'
 export default {
   data() {
     return {
-      treeData: []
+      treeData: [],
+      details: {}
     }
   },
   methods: {
@@ -54,6 +58,19 @@ export default {
     getSide() {
       this.$http('get', '/fontList/queryfontAction').then(res => {
         this.treeData = res.result[0].children
+      })
+    },
+    clickMenu(Fname, name) {
+      let kinds = name ? Fname + ',' + name : Fname
+      this.$http('get', '/font/queryOneFontByKindsAction', {
+        kinds: kinds
+      }).then(res => {
+        if (res.code == 200) {
+          this.details = res.info
+          this.details.content = marked(this.details.content || '', {
+            sanitize: true
+          })
+        }
       })
     }
   },
@@ -64,7 +81,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 * {
   margin: 0;
   padding: 0;

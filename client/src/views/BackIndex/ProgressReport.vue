@@ -50,7 +50,7 @@ export default {
   name: 'ProgressReport',
   data() {
     return {
-      activeNames: ['1', '2', '3', '4'],
+      activeNames: [0], // 默认显示第一个
       dialogFormVisible: false,
       labelPosition: 'right',
       formLabelAlign: {

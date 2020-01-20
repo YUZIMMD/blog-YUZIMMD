@@ -78,6 +78,7 @@ import Header from '../components/header'
 import { rgb } from '../util/common'
 
 export default {
+  name:'index',
   components: { Header },
   data() {
     return {

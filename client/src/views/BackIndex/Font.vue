@@ -12,14 +12,7 @@
         >
       </el-form-item>
       <el-form-item>
-        <el-select
-          class="selectBox"
-          v-model="form.kinds"
-          placeholder="请选择所属大类"
-          size="small"
-        >
-         
-        </el-select>
+         <el-cascader class="selectBox" size="small" v-model="formInline.kinds" :options="treeData" :props="{ label: 'name',value:'name' }"></el-cascader>
       </el-form-item>
       <el-form-item>
         <el-input
@@ -43,7 +36,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="所属分类" :label-width="formLabelWidth">
-            <el-cascader v-model="form.kinds" :options="treeData" :props="{ label: 'name',value:'id' }"></el-cascader>
+            <el-cascader v-model="form.kinds" :options="treeData" :props="{ label: 'name',value:'name' }"></el-cascader>
         </el-form-item>
         <el-form-item label="文章标签" :label-width="formLabelWidth">
           <el-input
@@ -71,7 +64,7 @@
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="title" label="文章标题"></el-table-column>
         <el-table-column label="所属大类">
-          <template slot-scope="scope">{{ options[scope.row.kinds] }}</template>
+          <template slot-scope="scope">{{ scope.row.kinds | kindsF }}</template>
         </el-table-column>
         <el-table-column label="文章标签">
           <template slot-scope="scope">
@@ -114,53 +107,24 @@ export default {
       tableData: [],
       formInline: {
         user: '',
-        region: ''
+        kinds: []
       },
       dialogFormVisible: false,
       form: {
         title: '',
-        kinds: '',
+        kinds: [],
         tags: '',
         content: ''
       },
-      options: ['前端规范', 'html', 'css', 'JavaScript', '框架', '工具'],
       formLabelWidth: '120px',
       title: '新增文章',
-      editorOption: {
-        modules: {
-          toolbar: {
-            container: [
-              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-              ['blockquote', 'code-block'],
-
-              [{ header: 1 }, { header: 2 }], // custom button values
-              [{ list: 'ordered' }, { list: 'bullet' }],
-              [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-              [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-              [{ direction: 'rtl' }], // text direction
-
-              [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-              [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-              [{ font: [] }],
-              [{ align: [] }],
-              ['link', 'image', 'video'],
-              ['clean'] // remove formatting button
-            ] // 工具栏
-            // handlers: {
-            //     'image': function (value) {
-            //         if (value) {
-            //             // alert('自定义图片')
-            //         } else {
-            //             this.quill.format('image', false);
-            //         }
-            //     }
-            // }
-          }
-        }
-      },
       treeData:[]
+    }
+  },
+  filters:{
+    kindsF(val){
+      // return val.join().replace(/,/g, " <= ");
+      return val.join();
     }
   },
   methods: {
@@ -188,6 +152,7 @@ export default {
               'YYYY-MM-DD HH:mm:ss'
             )
           }
+          item.kinds = item.kinds.split(',')
           return item
         })
       })
