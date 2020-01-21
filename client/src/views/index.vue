@@ -65,7 +65,7 @@
         </div>
         <div class="item more" @click="toDetails()">
           <el-button class="btn-style-user-details" round @click="linkTo()"
-            >列表清单>></el-button
+            >正在开发中...</el-button
           >
         </div>
       </div>
