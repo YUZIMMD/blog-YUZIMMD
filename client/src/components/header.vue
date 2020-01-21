@@ -26,9 +26,9 @@
         </el-submenu>
       </el-menu>
     </div> -->
-    <div class="header-right">
+    <!-- <div class="header-right">
       <button class="btn-style" @click="jump()">进入后台</button>
-    </div>
+    </div> -->
   </div>
 </template>
 

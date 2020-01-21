@@ -13,7 +13,7 @@
             一个历经沧桑，备受生活折磨，却依然相信代码可以拯救世界的程序员
           </div>
           <el-button class="btn-style-user-details" round @click="linkTo()"
-            >个人主页</el-button
+            >进入后台</el-button
           >
         </div>
       </div>
@@ -78,7 +78,7 @@ import Header from '../components/header'
 import { rgb } from '../util/common'
 
 export default {
-  name:'index',
+  name: 'index',
   components: { Header },
   data() {
     return {
@@ -95,7 +95,10 @@ export default {
     rgb,
     toDetails() {
       this.$router.push({ path: '/fontList' })
-    }
+    },
+    linkTo() {
+      this.$router.push("/login"); //$route和$router的区别,$router.push({path:'home'});本质是向history栈中添加一个路由，在我们看来是 切换路由，但本质是在添加一个history记录,route是一个跳转的路由对象，每一个路由都会有一个route对象，是一个局部的对象，可以获取对应的name,path,params,query等
+    },
   }
 }
 </script>
@@ -110,7 +113,6 @@ export default {
     width: 80%;
     margin: 0 auto;
     max-width: 1400px;
-    min-width: 1000px;
     .item1 {
       padding-top: 4rem;
       display: flex;
@@ -233,5 +235,51 @@ export default {
       }
     }
   }
-}</style
->>
+}
+@media screen and (max-width: 500px) {
+  .index {
+    .content {
+      width: 100%;
+      /deep/ .head {
+        padding-top: 10px;
+        padding-left: 5px;
+        display: block;
+        .user-name {
+          font-size: 16px;
+        }
+      }
+      .item1 {
+        display: block;
+        padding-top: 2rem;
+        .right {
+          font-size: 12px;
+          text-align: center;
+          > :nth-child(1) {
+            font-size: 1.5rem;
+            text-align: center;
+            line-height: 50px;
+            margin-top: 20px;
+          }
+          > :nth-child(2){
+            width: 80%;
+            margin: 0 auto;
+          } 
+          .btn-style-user-details{
+            position: static;
+            margin-top: 2rem;
+          }
+        }
+      }
+      .item3 {
+        margin-top: 2rem;
+        .item {
+          width: 95%;
+          border: 1px solid #4e3737;
+          margin: 0 auto;
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}
+</style>

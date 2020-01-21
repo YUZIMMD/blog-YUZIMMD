@@ -3,7 +3,10 @@
   <div id="basic">
     <!-- 头部 -->
     <div class="list-head">
-      <div class="title">前端知识清单列表</div>
+      <div class="title">
+        前端知识清单列表
+        <i class="el-icon-s-grid listBtn" @click="showMenu = !showMenu"></i>
+      </div>
     </div>
     <div class="flexBox">
       <!-- 侧边栏 -->
@@ -12,6 +15,7 @@
         class="list-menu"
         @open="handleOpen"
         @close="handleClose"
+        v-if="showMenu"
       >
         <template v-for="(item, index) in treeData">
           <el-submenu :index="item.name" :key="index" v-if="item.children">
@@ -61,7 +65,8 @@ export default {
     return {
       treeData: [],
       details: {},
-      active: ''
+      active: '',
+      showMenu: true
     }
   },
   methods: {
@@ -140,6 +145,9 @@ body {
       padding-left: 20px;
       font-weight: bold;
     }
+    .listBtn {
+      display: none;
+    }
   }
   .flexBox {
     display: flex;
@@ -177,6 +185,32 @@ body {
         }
         /deep/ .v-note-wrapper {
           border: none !important;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  #basic {
+    height: 100%;
+    .list-head {
+      .listBtn {
+        display: inline-block;
+        color: #d24c63;
+      }
+    }
+    .flexBox {
+      display: flex;
+      height: calc(100% - 50px);
+      .list-menu {
+        position: absolute;
+        z-index: 10000;
+        background-color: #fff;
+      }
+      .flexItem {
+        .mainBox {
+          max-width: 98%;
+          padding: 0;
         }
       }
     }
