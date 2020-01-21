@@ -59,7 +59,6 @@
   </div>
 </template>
 <script>
-import marked from 'marked'
 export default {
   data() {
     return {
@@ -107,9 +106,6 @@ export default {
             this.details.content = '努力学习中。。。'
             return false
           }
-          this.details.content = marked(this.details.content || '', {
-            sanitize: true
-          })
         }
       })
     }
