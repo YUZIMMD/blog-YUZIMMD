@@ -8,18 +8,18 @@
     <div class="flexBox">
       <!-- 侧边栏 -->
       <el-menu
-        default-active="57"
+        :default-active="active"
         class="list-menu"
         @open="handleOpen"
         @close="handleClose"
       >
         <template v-for="(item, index) in treeData">
-          <el-submenu :index="item.id + ''" :key="index" v-if="item.children">
+          <el-submenu :index="item.name" :key="index" v-if="item.children">
             <template slot="title">
               <span>{{ item.name }}</span>
             </template>
             <el-menu-item
-              :index="item1.id + ''"
+              :index="item1.name"
               v-for="(item1, index1) in item.children"
               :key="index1"
               @click="clickMenu(item.name, item1.name)"
@@ -27,7 +27,7 @@
             >
           </el-submenu>
           <el-menu-item
-            index="2"
+            :index="item.name"
             v-else
             :key="index"
             @click="clickMenu(item.name)"
@@ -47,6 +47,7 @@
             :editable="false"
             :scrollStyle="true"
             :ishljs="true"
+            :boxShadow="false"
           ></mavon-editor>
         </div>
       </div>
@@ -59,7 +60,8 @@ export default {
   data() {
     return {
       treeData: [],
-      details: {}
+      details: {},
+      active: ''
     }
   },
   methods: {
@@ -68,6 +70,18 @@ export default {
     getSide() {
       this.$http('get', '/fontList/queryfontAction').then(res => {
         this.treeData = res.result[0].children
+        // 首次进入页面先判断是否有缓存，如果没有调用菜单第一条的详情
+        let storageData = sessionStorage.getItem('menuActive')
+        console.log('111', storageData)
+        if (storageData) {
+          let storageDataO = JSON.parse(storageData)
+          this.clickMenu(storageDataO.Fname, storageDataO.name)
+          return false
+        }
+        this.clickMenu(
+          this.treeData[0].children[0].fname,
+          this.treeData[0].children[0].name
+        )
       })
     },
     clickMenu(Fname, name) {
@@ -76,7 +90,18 @@ export default {
         kinds: kinds
       }).then(res => {
         if (res.code == 200) {
+          this.active = name
+          // 将当前menu保存在sessionstorage中
+          sessionStorage.setItem(
+            'menuActive',
+            JSON.stringify({ Fname: Fname, name: name })
+          )
+          console.log(JSON.stringify({ Fname: Fname, name: name }))
           this.details = res.info
+          if (this.details.length == 0) {
+            this.details.content = '努力学习中。。。'
+            return false
+          }
           this.details.content = marked(this.details.content || '', {
             sanitize: true
           })
@@ -144,9 +169,15 @@ body {
       flex: 1;
       overflow-y: scroll;
       .mainBox {
-        max-width: 840px;
+        max-width: 80%;
         margin: 0 auto;
         padding: 2rem 2.5rem;
+        /deep/ .v-show-content {
+          background-color: #fff !important;
+        }
+        /deep/ .v-note-wrapper {
+          border: none !important;
+        }
       }
     }
   }
